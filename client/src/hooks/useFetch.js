@@ -9,7 +9,9 @@ const UseFetch = (path) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`https://erp.samironbarai.xyz/${path}`);
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/${path}`
+        );
         setData(res.data);
       } catch (err) {
         setError(err);
@@ -22,7 +24,9 @@ const UseFetch = (path) => {
   const reFetch = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`https://erp.samironbarai.xyz/${path}`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASEURLHOME}/${path}`
+      );
       setData(res.data);
     } catch (err) {
       setError(err);

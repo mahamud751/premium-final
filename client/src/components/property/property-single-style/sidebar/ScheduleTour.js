@@ -44,7 +44,7 @@ const ScheduleTour = ({ product }) => {
 
     try {
       const response = await fetch(
-        "https://erp.samironbarai.xyz/v1/product-requests",
+        "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/product-requests",
         {
           method: "POST",
           headers: {

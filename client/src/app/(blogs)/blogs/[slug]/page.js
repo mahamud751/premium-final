@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 
 const fetchSingleBlog = async (slug, token) => {
   const response = await axios.get(
-    `https://erp.samironbarai.xyz/v1/blogs/${slug}`,
+    `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/blogs/${slug}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

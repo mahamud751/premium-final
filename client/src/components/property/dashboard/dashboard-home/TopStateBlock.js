@@ -10,7 +10,7 @@ const TopStateBlock = () => {
 
   const fetchStatistics = async () => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/dashboard`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/dashboard`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

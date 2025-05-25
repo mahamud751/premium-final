@@ -91,7 +91,7 @@ const UserInboxList = () => {
 
   const fetchNotifications = async (page = 1) => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/notifications?page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/notifications?page=${page}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

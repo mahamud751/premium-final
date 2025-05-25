@@ -16,7 +16,7 @@ const Reviews = () => {
   // Fetch paginated reviews
   const fetchReviews = async (page = 1) => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/reviews?page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/reviews?page=${page}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

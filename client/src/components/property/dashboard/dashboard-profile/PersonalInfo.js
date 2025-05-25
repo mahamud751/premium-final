@@ -28,7 +28,7 @@ const PersonalInfo = ({ onImageChange, uploadedImage }) => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "https://erp.samironbarai.xyz/v1/profile",
+          "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ const PersonalInfo = ({ onImageChange, uploadedImage }) => {
 
     try {
       const response = await axios.post(
-        "https://erp.samironbarai.xyz/v1/profile",
+        "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/profile",
         data,
         {
           headers: {

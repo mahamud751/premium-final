@@ -18,9 +18,12 @@ const SidebarDashboard = () => {
 
   // Fetch totals for My Properties
   const fetchProperties = async () => {
-    const response = await axios.get("https://erp.samironbarai.xyz/v1/orders", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.get(
+      "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     return response.data.total || 0;
   };
 
@@ -38,7 +41,7 @@ const SidebarDashboard = () => {
   // Fetch totals for Notifications
   const fetchNotifications = async () => {
     const response = await axios.get(
-      "https://erp.samironbarai.xyz/v1/notifications",
+      "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/notifications",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -49,9 +52,12 @@ const SidebarDashboard = () => {
   // Fetch totals for Bids (assuming an endpoint exists)
   const fetchBids = async () => {
     try {
-      const response = await axios.get("https://erp.samironbarai.xyz/v1/bids", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       return response.data.total || 0;
     } catch {
       return 0; // Fallback if endpoint doesn't exist

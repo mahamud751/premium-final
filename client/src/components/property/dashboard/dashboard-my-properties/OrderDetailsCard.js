@@ -20,7 +20,7 @@ const OrderDetailsCard = ({ id }) => {
       try {
         setLoading(true);
         const orderRes = await axios.get(
-          `https://erp.samironbarai.xyz/v1/orders/${id}`,
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ const OrderDetailsCard = ({ id }) => {
         setOrder(orderRes.data.data);
 
         const paymentsRes = await axios.get(
-          `https://erp.samironbarai.xyz/v1/payments?_entity_type=Product&_entity_id=${id}`,
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/payments?_entity_type=Product&_entity_id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ const OrderDetailsCard = ({ id }) => {
       if (order?.project_id) {
         try {
           const purchaseRes = await axios.get(
-            `https://erp.samironbarai.xyz/v1/purchases?_project_id=${order.project_id}`,
+            `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/purchases?_project_id=${order.project_id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ const OrderDetailsCard = ({ id }) => {
 
   const fetchSingleProject = async () => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/projects`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/projects`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -17,7 +17,7 @@ const Project = () => {
 
   const fetchSingleProduct = async (id, token, page = 1) => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/products?_project_id=${id}`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/products?_project_id=${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ const Project = () => {
 
   const fetchSingleProject = async () => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/projects`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/projects`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

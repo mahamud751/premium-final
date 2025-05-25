@@ -19,7 +19,7 @@ const Auction = () => {
 
   const fetchProducts = async () => {
     const response = await axios.get(
-      `https://erp.samironbarai.xyz/v1/available-for-biding`,
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/available-for-biding`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ const Auction = () => {
 
     try {
       const response = await axios.post(
-        `https://erp.samironbarai.xyz/v1/bids`,
+        `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids`,
         payload,
         {
           headers: {
