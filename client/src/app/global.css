@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.uk-timeline .uk-timeline-item .uk-card {
+  max-height: 600px;
+  width: 100%;
+  padding: 20px;
+}
+
+.uk-timeline .uk-timeline-item::before {
+  background: #030c1a;
+  content: "";
+  height: 100%;
+  left: 19px;
+  position: absolute;
+  top: 20px;
+  width: 2px;
+  z-index: 1; /* Update z-index value */
+}
+
+.uk-timeline .uk-timeline-item {
+  display: flex;
+  position: relative;
+}
+
+.uk-timeline .uk-timeline-item .uk-timeline-icon {
+  display: flex;
+  justify-content: center; /* Center the bullet point horizontally */
+  align-items: center; /* Center the bullet point vertically */
+}
+
+.uk-timeline .uk-timeline-item .uk-timeline-icon .uk-badge {
+  width: 10px; /* Adjust the size of the bullet point */
+  height: 10px;
+  margin-left: 16px;
+  border-radius: 50%; /* Ensure the bullet point is circular */
+  background-color: #030c1a; /* Set the color of the bullet point */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Set the color of the icon inside the bullet point */
+}
+
+.uk-timeline .uk-timeline-item .uk-timeline-content {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0 0 0 1rem;
+}
+.uk-grid-main-div {
+  display: flex;
+}
+.uk-grid-main-div-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
