@@ -9,10 +9,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 
-const fetchProducts = async (bedroom, bathroom) => {
+const fetchProducts = async (bedroom, bathroom, _project_id) => {
   const params = new URLSearchParams();
   if (bedroom) params.set("_bedroom", bedroom);
   if (bathroom) params.set("_bathroom", bathroom);
+  if (_project_id) params.set("_project_id", _project_id);
 
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_BASEURL}/v1/products?${params.toString()}`
@@ -24,13 +25,14 @@ const Market = () => {
   const searchParams = useSearchParams();
   const bedroom = searchParams.get("_bedroom");
   const bathroom = searchParams.get("_bathroom");
+  const product = searchParams.get("_project_id");
   const {
     data: listings = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["products", bedroom, bathroom],
-    queryFn: () => fetchProducts(bedroom, bathroom),
+    queryKey: ["products", bedroom, bathroom, product],
+    queryFn: () => fetchProducts(bedroom, bathroom, product),
   });
 
   if (isLoading) {
