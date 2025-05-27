@@ -336,15 +336,15 @@ const OrderDetailsCard = ({ id }) => {
                   className="border-t border-gray-200 hover:bg-gray-50"
                 >
                   <td className="p-3">
-                    {new Date(p.payment_date).toLocaleDateString()}
+                    {new Date(p?.payment_date).toLocaleDateString()}
                   </td>
                   <td className="p-3 font-medium text-blue-600">
                     {p.transaction_id}
                   </td>
                   <td className="p-3 text-green-600">৳{p.amount || 0}</td>
-                  <td className="p-3">{p.payment_method}</td>
-                  <td className="p-3">{p.payment_type}</td>
-                  <td className="p-3">{p.payment_note}</td>
+                  <td className="p-3">{p?.payment_method}</td>
+                  <td className="p-3">{p?.payment_type}</td>
+                  <td className="p-3">{p?.payment_note}</td>
                   <td className="p-3">
                     <a
                       href={p.documents}
@@ -383,11 +383,12 @@ const OrderDetailsCard = ({ id }) => {
                 <th className="p-3 text-left">Total Price</th>
                 <th className="p-3 text-left">Unit Price</th>
                 <th className="p-3 text-left">Description</th>
+                <th className="p-3 text-left">Document</th>
               </tr>
             </thead>
             <tbody>
               {purchases?.map((purchase) =>
-                purchase.items?.map((item) => (
+                purchase?.items?.map((item) => (
                   <tr
                     key={item.id}
                     className="border-t border-gray-200 hover:bg-gray-50"
@@ -396,11 +397,21 @@ const OrderDetailsCard = ({ id }) => {
                       {new Date(item.created_at).toLocaleDateString()}
                     </td>
                     <td className="p-3 font-medium text-blue-600">
-                      {item.qty}
+                      {item?.qty}
                     </td>
-                    <td className="p-3 text-green-600">৳{item.total_price}</td>
-                    <td className="p-3">৳{item.unit_price}</td>
-                    <td className="p-3">{item.description}</td>
+                    <td className="p-3 text-green-600">৳{item?.total_price}</td>
+                    <td className="p-3">৳{item?.unit_price}</td>
+                    <td className="p-3">{item?.description}</td>
+                    <td className="p-3">
+                      <a
+                        href={purchase?.files}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline cursor-pointer"
+                      >
+                        View
+                      </a>
+                    </td>
                   </tr>
                 ))
               )}

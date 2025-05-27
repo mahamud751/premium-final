@@ -18,6 +18,8 @@ const AddAdditionalSalary: React.FC = () => {
       additionalFields={additionalFields}
       buttonText="Add Additional Salary"
       id=""
+      //@ts-ignore
+      photosData={[]}
       isNoPhotoFile={true}
       link="additional-salary-list"
     />

@@ -14,6 +14,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Input,
 } from "@mui/material";
 import { useAuth } from "@/services/hooks/auth";
 import StatusButton from "@/components/atoms/StatusButton";
@@ -25,6 +26,10 @@ const PurchaseList = () => {
   const [openStatusModal, setOpenStatusModal] = useState(false);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
   const [selectedRowId, setSelectedRowId] = useState<null | string>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<
+    "Confirm" | "Reject" | null
+  >(null);
 
   const handleOpenItemsModal = (items: any[]) => {
     setSelectedItems(items);
@@ -44,14 +49,33 @@ const PurchaseList = () => {
   const handleCloseStatusModal = () => {
     setOpenStatusModal(false);
     setSelectedRowId(null);
+    setSelectedFile(null);
+    setSelectedStatus(null);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === "application/pdf") {
+      setSelectedFile(file);
+    } else {
+      alert("Please select a valid PDF file");
+    }
   };
 
   const handleStatusUpdate = async (status: "Confirm" | "Reject") => {
     if (!selectedRowId) return;
 
+    setSelectedStatus(status);
+
+    if (!selectedFile) {
+      alert("Please select a PDF file to upload");
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("status", status);
+      formData.append("files", selectedFile);
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/purchases/${selectedRowId}/status`,
@@ -59,21 +83,20 @@ const PurchaseList = () => {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
-            // Note: Content-Type is not set manually as FormData sets it automatically
           },
           body: formData,
         }
       );
 
       if (response.ok) {
-        alert(`Status updated to ${status}`);
+        alert(`Status updated to ${status} and document uploaded successfully`);
         // Optionally, trigger a refresh of the DataTable data here
       } else {
-        alert("Failed to update status");
+        alert("Failed to update status and upload document");
       }
     } catch (error) {
-      console.error("Error updating status:", error);
-      alert("Error updating status");
+      console.error("Error updating status and uploading document:", error);
+      alert("Error updating status and uploading document");
     } finally {
       handleCloseStatusModal();
     }
@@ -257,7 +280,7 @@ const PurchaseList = () => {
           </Button>
         </Box>
       </Modal>
-      {/* Status Update Modal */}
+      {/* Status Update and File Upload Modal */}
       <Modal
         open={openStatusModal}
         onClose={handleCloseStatusModal}
@@ -283,12 +306,23 @@ const PurchaseList = () => {
             component="h2"
             gutterBottom
           >
-            Update Status
+            Update Status and Upload Document
           </Typography>
+          <Typography sx={{ mb: 2 }}>
+            Upload a PDF document (required):
+          </Typography>
+          <Input
+            type="file"
+            inputProps={{ accept: "application/pdf" }}
+            onChange={handleFileChange}
+            sx={{ mb: 2, width: "100%" }}
+          />
           <Typography id="status-modal-description" sx={{ mb: 2 }}>
             Select a status for the purchase:
           </Typography>
-          <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
+          <Box
+            sx={{ display: "flex", gap: 2, justifyContent: "center", mb: 2 }}
+          >
             <Button
               variant="contained"
               color="success"
@@ -304,6 +338,7 @@ const PurchaseList = () => {
               Reject
             </Button>
           </Box>
+
           <Button
             variant="outlined"
             onClick={handleCloseStatusModal}

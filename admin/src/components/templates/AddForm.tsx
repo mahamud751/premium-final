@@ -75,8 +75,6 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
   const formRef = useRef<HTMLFormElement | null>(null);
   const router = useRouter();
   const firstPart = useExtractLinkPart(link);
-  console.log("photosData", photosData);
-  console.log("initialPhotosData", initialPhotosData);
 
   useEffect(() => {
     const previews: { [key: string]: string[] } = {};
@@ -86,7 +84,6 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
         : [];
     });
     setImageFieldPreviews(previews);
-    console.log("Updated imageFieldPreviews:", previews);
 
     // Only set initialPhotosData if it is empty
     if (Object.keys(initialPhotosData).length === 0) {
@@ -333,7 +330,7 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
       }
     }
   };
-  console.log("ss", photosData);
+
   return (
     <div className="md:mx-24 md:p-12">
       <Paper elevation={2} className="shadow-lg">
@@ -348,9 +345,6 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
 
               <>
                 {imageFields.map(({ key, isMultiple, label }) => {
-                  console.log("imageFields", imageFields);
-                  console.log("imageFieldPreviews", imageFieldPreviews);
-
                   return (
                     <Grid item xs={8} key={key}>
                       <MultipleImageUpload

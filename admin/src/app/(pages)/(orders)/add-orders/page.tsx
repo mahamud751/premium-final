@@ -79,6 +79,9 @@ const AddOrder: React.FC = () => {
         resetFields={resetFields}
         files={files}
         setFiles={setFiles}
+        //@ts-ignore
+        photosData={[]}
+        isNoPhotoFile={true}
         id={""}
         link="orders-list"
       />

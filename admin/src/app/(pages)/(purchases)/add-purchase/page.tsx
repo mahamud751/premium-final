@@ -81,6 +81,8 @@ const AddPurchase: React.FC = () => {
         buttonText="Add Purchase"
         resetFields={resetFields}
         id={""}
+        //@ts-ignore
+        photosData={[]}
         isNoPhotoFile={true}
         link="purchase-list"
         numberFields={["qty", "unit_price"]}
