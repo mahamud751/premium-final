@@ -144,7 +144,7 @@ const FilterProperties = () => {
                             <div className="list-content">
                               <h6 className="list-title">
                                 <Link href={`/product/${listing?.id}`}>
-                                  {listing?.description}
+                                  {listing?.flat_type}-{listing?.floor_number}
                                 </Link>
                               </h6>
 
