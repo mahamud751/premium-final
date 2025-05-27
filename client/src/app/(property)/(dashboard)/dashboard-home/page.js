@@ -15,11 +15,11 @@ const DashboardHome = () => {
       <DefaultHeader />
       <MobileMenu />
       <div className="dashboard_content_wrapper">
-        <div className="dashboard dashboard_wrapper pr30 pr0-xl">
+        <div className="dashboard pr30 pr0-xl">
           <SidebarDashboard />
 
-          <div className="dashboard__main pl0-md ">
-            <div className="bgc-f7 p-4">
+          <div className="dashboard__main pl0-md">
+            <div className="px-5">
               <div className="row pb40">
                 <div className="col-lg-12">
                   <DboardMobileNavigation />

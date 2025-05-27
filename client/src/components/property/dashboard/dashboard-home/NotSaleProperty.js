@@ -12,7 +12,7 @@ const NotSaleProperty = () => {
   const { token } = useAuth();
   const fetchLocations = async () => {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/v1/products?_user_id=null`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/v1/projects?_user_id=null`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
