@@ -19,7 +19,7 @@ const SidebarDashboard = () => {
   // Fetch totals for My Properties
   const fetchProperties = async () => {
     const response = await axios.get(
-      "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders",
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -41,7 +41,7 @@ const SidebarDashboard = () => {
   // Fetch totals for Notifications
   const fetchNotifications = async () => {
     const response = await axios.get(
-      "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/notifications",
+      `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/notifications`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -53,7 +53,7 @@ const SidebarDashboard = () => {
   const fetchBids = async () => {
     try {
       const response = await axios.get(
-        "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids",
+        `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -14,7 +14,7 @@ export default function FAQSection() {
     const fetchFaqData = async () => {
       try {
         const response = await axios.get(
-          "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/faqs"
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/faqs`
         );
         setFaqData(response?.data?.data);
         setLoading(false);
