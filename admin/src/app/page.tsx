@@ -1,20 +1,10 @@
 "use client";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import UseFetch from "@/services/hooks/UseRequest";
-import {
-  Advance,
-  GrandPrice,
-  Order,
-  OrderStatus,
-  School,
-  Student,
-} from "@/services/types";
-import LatestProduct from "@/components/pageComponents/Home/LatestProduct";
-import { PieChart } from "@mui/x-charts";
-import LatestOrders from "@/components/pageComponents/Home/LatestOrders";
 import dynamic from "next/dynamic";
+import { Admin } from "@/services/types";
 
 const SchoolAnimation = dynamic(
   () => import("@/components/dynamics/animations/SchoolAnimation"),
@@ -23,11 +13,6 @@ const SchoolAnimation = dynamic(
 
 const TotalEcommerceAnimation = dynamic(
   () => import("@/components/dynamics/animations/TotalEcommerceAnimation"),
-  { ssr: false }
-);
-
-const TotalCustomOrderAnimation = dynamic(
-  () => import("@/components/dynamics/animations/TotalCustomOrderAnimation"),
   { ssr: false }
 );
 
@@ -46,76 +31,10 @@ const DeliveryAnimation = dynamic(
   { ssr: false }
 );
 
-const OrderAnimation = dynamic(
-  () => import("@/components/dynamics/animations/OrderAnimation"),
-  { ssr: false }
-);
-
 const Page = () => {
-  const { data: orderData, total: orderTotal } = UseFetch<{ data: Order[] }>(
-    `orders`
-  );
-
-  const { data: totalGrandPrice } = UseFetch<GrandPrice>(
-    `orders/totalGrandPrice`
-  );
-  const { total: customOrder } = UseFetch<Advance>(`advance`);
-  const { data, total: totalSchool } = UseFetch<School>(`schools`);
-  const { total: totalStudents } = UseFetch<Student>(`students`);
-  const delivery =
-    data &&
-    data?.data?.filter(
-      (school: { status: string }) => school.status === "delivered"
-    );
+  const { data: userData } = UseFetch<{ data: Admin }>("admin/dashboard");
 
   const theme = useTheme();
-
-  const statusCount =
-    orderData?.data.reduce((acc: any, order: Order) => {
-      acc[order.status] = (acc[order.status] || 0) + 1;
-      return acc;
-    }, {}) || {};
-
-  const orderStatusColors: Record<OrderStatus, string> = {
-    pending: "#FF9800",
-    processing: "#2196F3",
-    approved: "#4CAF50",
-    delivered: "#126C5A",
-    canceled: "#F44336",
-  };
-
-  const pieChartData = [
-    {
-      id: 0,
-      value: statusCount?.pending || 0,
-      label: "Pending",
-      color: orderStatusColors.pending,
-    },
-    {
-      id: 1,
-      value: statusCount?.processing || 0,
-      label: "Processing",
-      color: orderStatusColors.processing,
-    },
-    {
-      id: 2,
-      value: statusCount?.approved || 0,
-      label: "Approved",
-      color: orderStatusColors.approved,
-    },
-    {
-      id: 3,
-      value: statusCount?.delivered || 0,
-      label: "Delivered",
-      color: orderStatusColors.delivered,
-    },
-    {
-      id: 4,
-      value: statusCount?.canceled || 0,
-      label: "Canceled",
-      color: orderStatusColors.canceled,
-    },
-  ];
 
   return (
     <>
@@ -134,8 +53,10 @@ const Page = () => {
               </div>
               <div className="flex items-center justify-center ms-3 text-white">
                 <div>
-                  <p className="fs-5 text-[20px]">Total Ecommerce Orders</p>
-                  <p className="fw-bold text-[14px]">{orderTotal}</p>
+                  <p className="fs-5 text-[20px]">Total Projects</p>
+                  <p className="fw-bold text-[14px]">
+                    {userData?.data?.numberOfProjects ?? "N/A"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -155,16 +76,15 @@ const Page = () => {
               </div>
               <div className="flex items-center justify-center ms-3 text-white">
                 <div>
-                  <p className="fs-5 text-[20px]">Ecommerce Order Amount</p>
+                  <p className="fs-5 text-[20px]">Total Sold Flats</p>
                   <p className="fw-bold text-[14px]">
-                    ৳ {totalGrandPrice?.data?.totalGrandPrice}
+                    {userData?.data?.totalSoldFlats ?? "N/A"}
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </Grid>
-
         <Grid item xs={12} sm={6} md={4}>
           <div
             className={`rounded-[15px] p-5 bg-gradient-to-r ${
@@ -177,12 +97,12 @@ const Page = () => {
               <div className="flex justify-center items-center bg-[rgba(0,0,0,0.2)] rounded-full p-5 ">
                 <GreenBarAnimation />
               </div>
-
               <div className="flex items-center ms-3 text-white">
-                {" "}
                 <div>
-                  <p className="fs-5 text-[20px]">Total Custom Orders</p>
-                  <p className="fw-bold text-[14px]">{customOrder}</p>
+                  <p className="fs-5 text-[20px]">Total Available Flats</p>
+                  <p className="fw-bold text-[14px]">
+                    {userData?.data?.totalAvailableFlats ?? "N/A"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -204,8 +124,10 @@ const Page = () => {
               </div>
               <div className="flex items-center ms-3 text-white">
                 <div>
-                  <p className="fs-5 text-[20px]">Total Schools</p>
-                  <p className="fw-bold text-[14px]">{totalSchool}</p>
+                  <p className="fs-5 text-[20px]">Total Clients</p>
+                  <p className="fw-bold text-[14px]">
+                    {userData?.data?.numberOfClients ?? "N/A"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -225,69 +147,14 @@ const Page = () => {
               </div>
               <div className="flex items-center ms-3 text-white">
                 <div>
-                  <p className="fs-5 text-[20px]">Total Measurements</p>
-                  <p className="fw-bold text-[14px]">{totalStudents}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <div
-            className={`rounded-[15px] p-5 bg-gradient-to-r ${
-              theme.palette.mode === "dark"
-                ? "from-[#171717] to-[#5371eb]"
-                : "from-[#040404] to-[#165fb8]"
-            }`}
-          >
-            <div className="flex py-3">
-              <div className="flex justify-center items-center bg-[rgba(0,0,0,0.2)] rounded-full p-5 ">
-                <OrderAnimation />
-              </div>
-              <div className="flex items-center ms-3 text-white">
-                <div>
-                  <p className="fs-5 text-[20px]">
-                    Total Delivery Measurements
+                  <p className="fs-5 text-[20px]">Number Of Project Area</p>
+                  <p className="fw-bold text-[14px]">
+                    {userData?.data?.numberOfProjectsInArea ?? "N/A"}
                   </p>
-                  <p className="fw-bold text-[14px]">{delivery?.length}</p>
                 </div>
               </div>
             </div>
           </div>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <div className="flex items-center justify-center text-white">
-            <TotalCustomOrderAnimation />
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <div className="flex items-center justify-center h-[600px]">
-            <PieChart
-              series={[
-                {
-                  data: pieChartData,
-                },
-              ]}
-              width={600}
-              height={400}
-            />
-          </div>
-        </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={7}>
-          <Paper elevation={2} className="shadow-lg">
-            <LatestProduct />
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <Paper elevation={2} className="shadow-lg">
-            <LatestOrders />
-          </Paper>
         </Grid>
       </Grid>
     </>

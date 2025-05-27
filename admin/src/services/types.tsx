@@ -563,6 +563,14 @@ export interface User {
   permissions?: Permission[];
 }
 
+export interface Admin {
+  numberOfProjects: number;
+  totalSoldFlats: number;
+  totalAvailableFlats: number;
+  numberOfClients: number;
+  numberOfProjectsInArea: number;
+}
+
 export interface Order {
   totalGrandPrice: Order | null;
   id: string;
