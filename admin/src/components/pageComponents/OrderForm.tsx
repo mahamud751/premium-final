@@ -23,6 +23,7 @@ interface OrderData {
   transaction_id: string;
   payment_date: string;
   payment_note: string;
+  documents: string[];
 }
 
 interface OrderFormProps {
@@ -57,6 +58,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
     transaction_id: "",
     payment_date: "",
     payment_note: "",
+    documents: [],
   });
 
   const {

@@ -11,7 +11,7 @@ const AddPayment: React.FC = () => {
   const [selectedPayment, setSelectedPayment] = useState<string>("");
   const [selectedPayementType, setSelectedPaymentType] = useState<string>("");
   const photosData: { title: string; src: string }[] = [];
-
+  const [files, setFiles] = useState<File[]>([]);
   const additionalFields = (
     <>
       <PaymentForm
@@ -80,6 +80,12 @@ const AddPayment: React.FC = () => {
       <AddForm
         endpoint={`${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/payments`}
         additionalFields={additionalFields}
+        additionalData={{
+          documents: [],
+          deleted_documents: [],
+        }}
+        files={files}
+        setFiles={setFiles}
         buttonText="Add Payment"
         resetFields={resetFields}
         id={""}

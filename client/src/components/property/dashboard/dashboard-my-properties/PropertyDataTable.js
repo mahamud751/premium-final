@@ -26,7 +26,7 @@ const PropertyDataTable = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders",
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/orders`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

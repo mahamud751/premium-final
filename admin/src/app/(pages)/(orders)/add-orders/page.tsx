@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import AddForm from "@/components/templates/AddForm";
-import { Project, Product } from "@/services/types";
+import { Project, Product, AdditionalData } from "@/services/types";
 import OrderForm from "@/components/pageComponents/OrderForm";
 
 interface OrderData {
@@ -13,15 +13,17 @@ interface OrderData {
   transaction_id: string;
   payment_date: string;
   payment_note: string;
+  documents: string[];
 }
 
 const AddOrder: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
   const [, setProjects] = useState<Project[]>([]);
   const [, setProducts] = useState<Product[]>([]);
-  const [, setOrderData] = useState<OrderData>({
+  const [orderData, setOrderData] = useState<OrderData>({
     user_id: "",
     project_id: "",
     product_id: "",
@@ -30,6 +32,7 @@ const AddOrder: React.FC = () => {
     transaction_id: "",
     payment_date: "",
     payment_note: "",
+    documents: [],
   });
 
   const additionalFields = (
@@ -59,22 +62,24 @@ const AddOrder: React.FC = () => {
       transaction_id: "",
       payment_date: "",
       payment_note: "",
+      documents: [],
     });
   };
-
+  const additionalData: AdditionalData = {
+    documents: [],
+    deleted_documents: [],
+  };
   return (
     <div>
       <AddForm
         endpoint={`${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/orders`}
         additionalFields={additionalFields}
-        //@ts-ignore
-        additionalData={[]}
+        additionalData={additionalData}
         buttonText="Add Order"
         resetFields={resetFields}
+        files={files}
+        setFiles={setFiles}
         id={""}
-        //@ts-ignore
-        photosData={[]}
-        isNoPhotoFile={true}
         link="orders-list"
       />
     </div>

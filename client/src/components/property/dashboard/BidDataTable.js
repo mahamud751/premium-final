@@ -26,7 +26,7 @@ const BidDataTable = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          "${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids",
+          `${process.env.NEXT_PUBLIC_BASEURLHOME}/v1/bids`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
