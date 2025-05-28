@@ -19,7 +19,9 @@ const Blogs = () => {
           <div className="row">
             <div className="col-lg-6 m-auto" data-aos="fade-up">
               <div className="main-title text-start text-md-center">
-                <h2 className="text-4xl uppercase">From Our Blog</h2>
+                <h2 className="text-3xl md:text-4xl uppercase">
+                  From Our Blog
+                </h2>
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ const MarketListing = ({ listings }) => {
                     </Link>
                   </h6>
 
-                  <div className="flex items-center gap-4 px-4 py-2 my-3 transition-colors duration-200 rounded-lg bg-gray-50 hover:bg-gray-100">
+                  <div className="flex items-center gap-2 md:gap-4 px-2 md:px-4 py-2 my-3 transition-colors duration-200 rounded-lg bg-gray-50 hover:bg-gray-100">
                     <a
                       href="#"
                       className="flex items-center text-gray-700 transition-colors duration-200 hover:text-teal-600"
