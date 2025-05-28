@@ -1,6 +1,7 @@
 "use client";
 import ScrollToTop from "@/components/common/ScrollTop";
 import PopupModalVideo from "@/components/home/home-v1/PopupModalVideo";
+import AuthWrapper from "@/utilis/authWrapper";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -47,12 +48,14 @@ export default function RootLayout({ children }) {
         cz-shortcut-listen="false"
       >
         <QueryClientProvider client={queryClient}>
-          <div className="wrapper ovh">
-            <PopupModalVideo />
-            <Providers>{children}</Providers>
-          </div>
+          <AuthWrapper>
+            <div className="wrapper ovh">
+              <PopupModalVideo />
+              <Providers>{children}</Providers>
+            </div>
 
-          <ScrollToTop />
+            <ScrollToTop />
+          </AuthWrapper>
         </QueryClientProvider>
       </body>
     </html>
