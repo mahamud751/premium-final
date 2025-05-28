@@ -1,5 +1,6 @@
 "use client";
 import ScrollToTop from "@/components/common/ScrollTop";
+import PopupModalVideo from "@/components/home/home-v1/PopupModalVideo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
       >
         <QueryClientProvider client={queryClient}>
           <div className="wrapper ovh">
+            <PopupModalVideo />
             <Providers>{children}</Providers>
           </div>
 
