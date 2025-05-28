@@ -11,13 +11,12 @@ export default function AuthWrapper({ children }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (pathname !== "/" && !token) {
-      router.push("/");
-    } else if (pathname === "/" && token) {
-      router.push("/dashboard");
-    } else {
-      setLoading(false);
+    if (pathname.startsWith("/dashboard") && !token) {
+      router.replace("/");
+      return;
     }
+
+    setLoading(false);
   }, [router, pathname]);
 
   if (loading) return null;
