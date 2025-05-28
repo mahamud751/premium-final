@@ -41,9 +41,9 @@ export default function CategoryContent({
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-lg p-6 mb-8 w-full duration-300">
           <div className="">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-stone-950 animate-fade-in me-12 text-center my-12">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#16542A] animate-fade-in me-12 text-center my-12">
               PROJECT
-              <p className="text-blue-600">{projectName}</p>
+              <p className="text-[#16542A]">{projectName}</p>
             </h1>
           </div>
 
@@ -338,15 +338,15 @@ export default function CategoryContent({
                         <div className="list-tag2 rounded-0 fz12">FOR SALE</div>
                       </div>
                       <div className="list-meta">
-                        <a href="#" className="mr5">
+                        <Link href={`/property/${listing.id}`} className="mr5">
                           <span className="flaticon-fullscreen" />
-                        </a>
-                        <a href="#" className="mr5">
+                        </Link>
+                        {/* <a href="#" className="mr5">
                           <span className="flaticon-new-tab" />
                         </a>
                         <a href="#">
                           <span className="flaticon-like" />
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                     <div className="list-content">

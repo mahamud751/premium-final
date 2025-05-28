@@ -54,7 +54,7 @@ export default function Pagination({ meta = {}, onPageChange }) {
               className={`px-3 py-2 rounded-md text-sm font-medium 
                 ${
                   p === page
-                    ? "bg-blue-500 text-white"
+                    ? "bg-[#16542A] text-white"
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }
                 ${p === "..." ? "cursor-default pointer-events-none" : ""}`}

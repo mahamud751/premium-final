@@ -170,6 +170,7 @@ const PersonalInfo = ({ onImageChange, uploadedImage }) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Your Email"
+                readOnly
               />
             </div>
           </div>

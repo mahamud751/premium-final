@@ -131,6 +131,7 @@ const ScheduleTour = ({ product }) => {
                     name="details"
                     value={formData.details}
                     onChange={handleChange}
+                    className="p-2"
                   />
                 </div>
               </div>

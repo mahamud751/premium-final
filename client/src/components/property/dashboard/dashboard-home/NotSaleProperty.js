@@ -12,7 +12,7 @@ const NotSaleProperty = () => {
   const { token } = useAuth();
   const fetchLocations = async () => {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/v1/projects?_user_id=null`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/v1/products?_user_id=null`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ const NotSaleProperty = () => {
     return (
       <section className="our-faq pt-20 py-12 md:px-4">
         <div className="container mx-auto max-w-7xl">
-          <p className="text-center ">Loading Banners...</p>
+          <p className="text-center ">Loading Property...</p>
         </div>
       </section>
     );
@@ -110,15 +110,18 @@ const NotSaleProperty = () => {
                               </div>
 
                               <div className="list-meta">
-                                <a href="#" className="mr5">
+                                <Link
+                                  href={`/property/${listing.id}`}
+                                  className="mr5"
+                                >
                                   <span className="flaticon-fullscreen" />
-                                </a>
-                                <a href="#" className="mr5">
+                                </Link>
+                                {/* <a href="#" className="mr5">
                                   <span className="flaticon-new-tab" />
                                 </a>
                                 <a href="#">
                                   <span className="flaticon-like" />
-                                </a>
+                                </a> */}
                               </div>
                             </div>
                             <div className="list-content">

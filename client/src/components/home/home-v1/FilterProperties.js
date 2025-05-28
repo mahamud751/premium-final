@@ -132,15 +132,18 @@ const FilterProperties = () => {
                               </div>
 
                               <div className="list-meta">
-                                <a href="#" className="mr5">
+                                <Link
+                                  href={`/property/${listing.id}`}
+                                  className="mr5"
+                                >
                                   <span className="flaticon-fullscreen" />
-                                </a>
-                                <a href="#" className="mr5">
+                                </Link>
+                                {/* <a href="#" className="mr5">
                                   <span className="flaticon-new-tab" />
-                                </a>
-                                <a href="#">
+                                </a> */}
+                                {/* <a href="#">
                                   <span className="flaticon-like" />
-                                </a>
+                                </a> */}
                               </div>
                             </div>
                             <div className="list-content">
