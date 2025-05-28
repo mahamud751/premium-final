@@ -11,6 +11,7 @@ import Slider from "@/components/home/home-v1/Slider";
 import PopularCollection from "@/components/pages/popular-collection/popular-collection";
 import Reviews from "@/components/pages/reviews/Reviews";
 import ScheduleTour from "@/components/property/property-single-style/sidebar/ScheduleTour";
+import MobileSlider from "@/components/home/home-v1/MobileSlider";
 
 export const metadata = {
   title: "The Premium Homes Ltd",
@@ -21,7 +22,14 @@ const Home_V1 = () => {
     <>
       <DefaultHeader />
       <MobileMenu />
-      <Slider />
+      <>
+        <div className="hidden lg:block">
+          <Slider />
+        </div>
+        <div className="block lg:hidden">
+          <MobileSlider />
+        </div>
+      </>
 
       <section className="pb40-md pb90">
         <div className="container">
