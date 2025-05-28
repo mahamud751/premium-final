@@ -14,7 +14,7 @@ const Market = () => {
       <DefaultHeader />
       <MobileMenu />
       <div className="my-10 text-center">
-        <p className="text-bolder text-[60px] text-[#10572A]">
+        <p className="text-bolder text-2xl md:text-[60px] text-[#10572A]">
           {" "}
           Discover the best properties in the market
         </p>

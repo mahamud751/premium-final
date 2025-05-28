@@ -10,7 +10,7 @@ const ReviewContent = ({ reviews = [], meta = {}, onPageChange }) => {
           What Our Clients Say
         </h2>
         {reviews.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid pt-5 md:pt-0 grid-cols-1 lg:grid-cols-2 gap-6">
             {reviews?.map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}

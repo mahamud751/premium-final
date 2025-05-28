@@ -10,7 +10,7 @@ export default function AboutContent() {
   return (
     <div className="bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
       <section className="px-6 py-16 max-w-7xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+        <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">
           About Us
         </h1>
         <p className="text-lg text-center max-w-2xl mx-auto mb-12 text-gray-800">
