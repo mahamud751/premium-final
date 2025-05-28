@@ -52,7 +52,7 @@ const PopularCollection = () => {
     <div className="py-10 px-4 sm:px-6 lg:px-8">
       <div>
         <div className="main-title2">
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold">
             Discover your popular collection
           </h2>
         </div>

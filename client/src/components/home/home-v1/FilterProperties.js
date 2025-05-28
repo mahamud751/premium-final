@@ -56,10 +56,12 @@ const FilterProperties = () => {
       <div className="row wow fadeInUp" data-wow-delay="100ms">
         <div className="col-lg-12">
           <div className="main-title2 flex justify-between items-center w-full">
-            <h2 className="text-3xl font-bold">All Available Properties</h2>
+            <h2 className="text-[22px] md:text-3xl font-bold">
+              All Available Properties
+            </h2>
             <Link
               href="/properties"
-              className="bg-[#10572A] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+              className="bg-[#10572A] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
             >
               View All
             </Link>
@@ -67,7 +69,7 @@ const FilterProperties = () => {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row px-2">
         <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
           <div className="tab-content">
             <div className="row">

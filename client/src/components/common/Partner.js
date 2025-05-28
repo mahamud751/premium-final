@@ -57,7 +57,7 @@ const Partner = () => {
     <section className="our-faq pt-20 py-12 md:px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="main-title2 text-center">
-          <h2 className="text-3xl font-bold">Our Partners</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Our Partners</h2>
         </div>
         {showSlider && (
           <Swiper

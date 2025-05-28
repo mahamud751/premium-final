@@ -64,7 +64,7 @@ const Reviews = () => {
     <div className="w-full">
       <div>
         <div className="main-title2 flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold">Customer Reviews</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Customer Reviews</h2>
           <Link
             href="/reviews"
             className="bg-[#10572A] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"

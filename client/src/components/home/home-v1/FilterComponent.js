@@ -52,7 +52,7 @@ export default function FilterComponent() {
   };
 
   return (
-    <div className="w-full px-4 py-8 bg-gradient-to-r from-blue-50 to-indigo-100">
+    <div className="w-full md:px-4 px-2 py-2 md:py-8 bg-gradient-to-r from-blue-50 to-indigo-100">
       <div className="w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl p-6 sm:p-8 transform hover:shadow-3xl transition-shadow duration-300">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {/* Project Dropdown */}

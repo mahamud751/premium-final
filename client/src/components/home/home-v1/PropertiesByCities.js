@@ -42,7 +42,7 @@ const PropertyByCities = () => {
     <section className="our-faq pt-0 md:px-4">
       <div>
         <div className="main-title2">
-          <h2 className="text-3xl font-bold">Our Projects Section</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Our Projects Section</h2>
         </div>
         <Swiper
           spaceBetween={30}
