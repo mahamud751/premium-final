@@ -416,6 +416,10 @@ export const commonMenuItems: MenuItem[] = [
         path: "/journal-list",
       },
       {
+        text: "Ledger List",
+        path: "/ledger-list",
+      },
+      {
         text: "Expense Head List",
         path: "/expense-head-list",
       },
