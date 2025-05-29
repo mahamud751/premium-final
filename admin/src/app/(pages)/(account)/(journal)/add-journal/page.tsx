@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import AddForm from "@/components/templates/AddForm";
-import { Journal, Requisition } from "@/services/types";
-import RequisitionForm from "@/components/pageComponents/RequisitionForm";
+import { Journal } from "@/services/types";
 import JournalForm from "@/components/pageComponents/JournalForm";
 
 const AddJournal: React.FC = () => {
@@ -37,7 +36,7 @@ const AddJournal: React.FC = () => {
         additionalFields={additionalFields}
         additionalData={{
           //@ts-ignore
-          details: [journalData.details],
+          details: journalData.details,
         }}
         buttonText="Add Journal"
         resetFields={resetFields}
