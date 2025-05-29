@@ -42,8 +42,10 @@ const AddJournal: React.FC = () => {
         buttonText="Add Journal"
         resetFields={resetFields}
         id=""
+        //@ts-ignore
+        photosData={[]}
         isNoPhotoFile={true}
-        link="/journal-list"
+        link="journal-list"
         numberFields={["amount"]}
       />
     </div>

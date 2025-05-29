@@ -165,7 +165,7 @@ const JournalList = () => {
         columns={columns}
         searchField="description"
         defaultHiddenColumns={[]}
-        link="/journal-list"
+        link="journal-list"
       />
       {/* Items Modal */}
       <Modal

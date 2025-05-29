@@ -67,6 +67,8 @@ const AddAccount: React.FC = () => {
       additionalFields={additionalFields}
       buttonText="Add Account"
       id=""
+      //@ts-ignore
+      photosData={[]}
       isNoPhotoFile={true}
       link="account-list"
     />
