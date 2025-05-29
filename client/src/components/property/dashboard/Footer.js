@@ -30,10 +30,10 @@ const Footer = () => {
           <div className="col-auto">
             <div className="footer_bottom_right_widgets text-center text-lg-end">
               <p>
-                {footerLinks.map((link, index) => (
+                {footerLinks?.map((link, index) => (
                   <React.Fragment key={index}>
-                    <a href={link.href}>{link.text}</a>
-                    {index !== footerLinks.length - 1 && " · "}
+                    <a href={link?.href}>{link?.text}</a>
+                    {index !== footerLinks?.length - 1 && " · "}
                   </React.Fragment>
                 ))}
               </p>

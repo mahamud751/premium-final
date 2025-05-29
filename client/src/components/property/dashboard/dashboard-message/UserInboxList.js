@@ -132,12 +132,12 @@ const UserInboxList = () => {
         </p>
       ) : (
         <>
-          {data.data.map((user, index) => (
+          {data?.data?.map((user, index) => (
             <UserItem key={user.id || index} user={user} />
           ))}
-          {data.meta && (
+          {data?.meta && (
             <div style={{ padding: "16px 0", textAlign: "center" }}>
-              <Pagination meta={data.meta} onPageChange={handlePageChange} />
+              <Pagination meta={data?.meta} onPageChange={handlePageChange} />
             </div>
           )}
         </>

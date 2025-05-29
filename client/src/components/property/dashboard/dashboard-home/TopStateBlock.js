@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
+import { useAuth } from "@/hooks/auth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useAuth } from "@/hooks/auth";
-import { FaMoneyBill, FaBuilding, FaCalendarAlt } from "react-icons/fa";
+import { FaBuilding, FaCalendarAlt, FaMoneyBill } from "react-icons/fa";
 
 const TopStateBlock = () => {
   const { token } = useAuth();
@@ -89,7 +88,7 @@ const TopStateBlock = () => {
           No statistics available.
         </p>
       ) : (
-        cards.map((card, index) => (
+        cards?.map((card, index) => (
           <div
             key={index}
             className="flex-1 w-full max-w-[calc(33.333%-16px)] min-w-[340px] md:min-w-[250px]"
@@ -100,7 +99,7 @@ const TopStateBlock = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: "24px",
-                background: card.gradient,
+                background: card?.gradient,
                 borderRadius: "16px",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                 transition: "transform 0.2s",
@@ -123,16 +122,16 @@ const TopStateBlock = () => {
                     textTransform: "uppercase",
                   }}
                 >
-                  {card.text}
+                  {card?.text}
                 </div>
                 <div
                   style={{
                     fontSize: "28px",
                     fontWeight: "700",
-                    color: card.iconColor,
+                    color: card?.iconColor,
                   }}
                 >
-                  {card.title}
+                  {card?.title}
                 </div>
               </div>
               <div
@@ -150,7 +149,7 @@ const TopStateBlock = () => {
                 <card.IconComponent
                   style={{
                     fontSize: "28px",
-                    color: card.iconColor,
+                    color: card?.iconColor,
                   }}
                 />
               </div>

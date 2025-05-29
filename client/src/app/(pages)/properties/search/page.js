@@ -18,7 +18,7 @@ const fetchProducts = async (bedroom, bathroom, _project_id) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_BASEURL}/v1/products?${params.toString()}`
   );
-  return response.data.data;
+  return response?.data?.data;
 };
 
 const Market = () => {

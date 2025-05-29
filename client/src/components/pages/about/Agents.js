@@ -38,22 +38,22 @@ const Agents = () => {
         }}
         autoplay={{ delay: 3000 }} // Set the desired delay for autoplay
       >
-        {agents.slice(0, 7).map((agent, index) => (
+        {agents?.slice(0, 7).map((agent, index) => (
           <SwiperSlide key={index}>
             <div className="item" key={index}>
-              <Link  href={`/agent-single/${agent.id}`}>
+              <Link  href={`/agent-single/${agent?.id}`}>
                 <div className="team-style1">
                   <div className="team-img">
                     <Image
                       width={217}
                       height={248}
                       className="w-100 h-100 cover"
-                      src={agent.image}
+                      src={agent?.image}
                       alt="agent team"
                     />
                   </div>
                   <div className="team-content pt20">
-                    <h6 className="name mb-1">{agent.name}</h6>
+                    <h6 className="name mb-1">{agent?.name}</h6>
                     <p className="text fz15 mb-0">Broker</p>
                   </div>
                 </div>

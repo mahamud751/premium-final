@@ -69,8 +69,8 @@ export default function FilterComponent() {
                 Select a project
               </option>
               {locations?.map((project) => (
-                <option key={project.id} value={project.id}>
-                  {project.name}
+                <option key={project?.id} value={project?.id}>
+                  {project?.name}
                 </option>
               ))}
             </select>
@@ -89,7 +89,7 @@ export default function FilterComponent() {
               <option value="" disabled>
                 Select number
               </option>
-              {bedroomOptions.map((num) => (
+              {bedroomOptions?.map((num) => (
                 <option key={num} value={num}>
                   {num}
                 </option>
@@ -110,7 +110,7 @@ export default function FilterComponent() {
               <option value="" disabled>
                 Select number
               </option>
-              {bathroomOptions.map((num) => (
+              {bathroomOptions?.map((num) => (
                 <option key={num} value={num}>
                   {num}
                 </option>

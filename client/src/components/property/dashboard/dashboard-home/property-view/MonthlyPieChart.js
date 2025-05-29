@@ -29,7 +29,7 @@ const PieChartExample = () => {
     <ResponsiveContainer width="100%" height="100%">
       <PieChart width={400} height={400}>
         <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={60}>
-          {data01.map((entry, index) => (
+          {data01?.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -42,7 +42,7 @@ const PieChartExample = () => {
           outerRadius={130}
           label
         >
-          {data02.map((entry, index) => (
+          {data02?.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

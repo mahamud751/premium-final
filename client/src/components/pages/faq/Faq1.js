@@ -28,9 +28,9 @@ const Faq1 = () => {
 
   return (
     <div className="accordion" id="accordionExample">
-      {faqItems.map((item, index) => (
+      {faqItems?.map((item, index) => (
         <div className="accordion-item" key={index}>
-          <h2 className="accordion-header" id={item.id}>
+          <h2 className="accordion-header" id={item?.id}>
             <button
               className={`accordion-button ${index === 2 ? "" : "collapsed"}`}
               type="button"
@@ -39,7 +39,7 @@ const Faq1 = () => {
               aria-expanded={index === 2 ? "true" : "false"}
               aria-controls={`collapse${index + 1}`}
             >
-              {item.question}
+              {item?.question}
             </button>
           </h2>
           <div
@@ -47,11 +47,11 @@ const Faq1 = () => {
             className={`accordion-collapse collapse ${
               index === 2 ? "show" : ""
             }`}
-            aria-labelledby={item.id}
+            aria-labelledby={item?.id}
             data-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>{item.answer}</p>
+              <p>{item?.answer}</p>
             </div>
           </div>
         </div>

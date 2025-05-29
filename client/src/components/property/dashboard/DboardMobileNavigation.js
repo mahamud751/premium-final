@@ -71,7 +71,7 @@ const DboardMobileNavigation = () => {
           <i className="fa fa-bars pr10" /> Dashboard Navigation
         </button>
         <ul className={`dropdown-content ${isDropdownOpen ? "show" : ""}`}>
-          {sidebarItems.map((section, sectionIndex) => (
+          {sidebarItems?.map((section, sectionIndex) => (
             <div key={sectionIndex}>
               <p
                 className={`fz15 fw400 ff-heading mt30 pl30 ${
@@ -80,15 +80,15 @@ const DboardMobileNavigation = () => {
               >
                 {section.title}
               </p>
-              {section.items.map((item, itemIndex) => (
+              {section?.items?.map((item, itemIndex) => (
                 <div key={itemIndex} className="sidebar_list_item">
                   <Link
                     href={item.href}
                     className={`items-center   ${
-                      pathname == item.href ? "-is-active" : ""
+                      pathname == item?.href ? "-is-active" : ""
                     } `}
                   >
-                    <i className={`${item.icon} mr15`} />
+                    <i className={`${item?.icon} mr15`} />
                     {item.text}
                   </Link>
                 </div>

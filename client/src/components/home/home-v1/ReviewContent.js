@@ -9,10 +9,10 @@ const ReviewContent = ({ reviews = [], meta = {}, onPageChange }) => {
         <h2 className="md:text-3xl text-2xl font-bold text-center text-gray-800 mb-8">
           What Our Clients Say
         </h2>
-        {reviews.length > 0 ? (
+        {reviews?.length > 0 ? (
           <div className="grid pt-5 md:pt-0 grid-cols-1 lg:grid-cols-2 gap-6">
             {reviews?.map((review) => (
-              <ReviewCard key={review.id} review={review} />
+              <ReviewCard key={review?.id} review={review} />
             ))}
           </div>
         ) : (

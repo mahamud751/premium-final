@@ -24,9 +24,9 @@ const SocialLinks = () => {
 
   return (
     <>
-      {socialLinks.map((link) => (
-        <a className="me-3" href={link.href} key={link.id}>
-          <i className={link.iconClass}></i>
+      {socialLinks?.map((link) => (
+        <a className="me-3" href={link?.href} key={link?.id}>
+          <i className={link?.iconClass}></i>
         </a>
       ))}
     </>

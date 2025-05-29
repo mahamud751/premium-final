@@ -23,7 +23,7 @@ const fetchReviews = async () => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_BASEURL}/v1/reviews`
   );
-  return response.data.data;
+  return response?.data?.data;
 };
 
 const Reviews = () => {
@@ -101,7 +101,7 @@ const Reviews = () => {
           }}
         >
           {reviews?.map((review, idx) => (
-            <SwiperSlide key={review.id || idx}>
+            <SwiperSlide key={review?.id || idx}>
               <div className="rounded-xl pt-5 md:pt-0 flex flex-col gap-6 p-6 transition-all duration-300 hover:shadow-xl">
                 {/* Video Thumbnail */}
                 <LightGallery
@@ -129,7 +129,7 @@ const Reviews = () => {
                     className="relative block w-full h-[300px] md:h-[350px] rounded-xl overflow-hidden group"
                   >
                     <Image
-                      src={getSingleImage(review.image?.[0])}
+                      src={getSingleImage(review?.image?.[0])}
                       alt="Review Video Thumbnail"
                       fill
                       style={{ objectFit: "cover" }}
@@ -145,8 +145,8 @@ const Reviews = () => {
                 {/* <div className="flex flex-col justify-center flex-grow">
                   <p className="text-gray-600 text-base md:text-lg leading-relaxed p-4">
                     {review?.message?.length > 100
-                      ? review.message.slice(0, 100) + "..."
-                      : review.message || "No message provided"}
+                      ? review?.message.slice(0, 100) + "..."
+                      : review?.message || "No message provided"}
                   </p>
                 </div> */}
               </div>

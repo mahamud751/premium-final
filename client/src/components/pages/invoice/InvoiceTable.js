@@ -42,14 +42,14 @@ const InvoiceTable = () => {
       </thead>
 
       <tbody>
-        {tableData.map((row, index) => (
+        {tableData?.map((row, index) => (
           <tr
             key={index}
-            className={index === tableData.length - 1 ? "tblp_row" : "bdrb1"}
+            className={index === tableData?.length - 1 ? "tblp_row" : "bdrb1"}
           >
             <th
               className={
-                index === tableData.length - 1 ? "tblp_title" : "tbl_title"
+                index === tableData?.length - 1 ? "tblp_title" : "tbl_title"
               }
               scope="row"
             >
@@ -59,7 +59,7 @@ const InvoiceTable = () => {
             <td className="tbl_title">{row.vat}</td>
             <td
               className={
-                index === tableData.length - 1 ? "tblp_title" : "tblpr_title"
+                index === tableData?.length - 1 ? "tblp_title" : "tblpr_title"
               }
             >
               {row.total}

@@ -29,22 +29,22 @@ const Explore = () => {
 
   return (
     <>
-      {iconboxData.map((item) => (
+      {iconboxData?.map((item) => (
         <div
           className="col-sm-6 col-lg-4"
-          key={item.id}
+          key={item?.id}
           data-aos="fade-up"
-          data-aos-delay={(item.id + 1) * 100} // Increase delay for each item
+          data-aos-delay={(item?.id + 1) * 100} // Increase delay for each item
         >
           <div className="iconbox-style2 text-center">
             <div className="icon">
-              <Image width={150} height={150} src={item.icon} alt="icon" />
+              <Image width={150} height={150} src={item?.icon} alt="icon" />
             </div>
             <div className="iconbox-content">
-              <h4 className="title">{item.title}</h4>
-              <p className="text">{item.text}</p>
+              <h4 className="title">{item?.title}</h4>
+              <p className="text">{item?.text}</p>
               <Link href="/grid-default" className="ud-btn btn-white2">
-                {item.linkText}
+                {item?.linkText}
                 <i className="fal fa-arrow-right-long" />
               </Link>
             </div>

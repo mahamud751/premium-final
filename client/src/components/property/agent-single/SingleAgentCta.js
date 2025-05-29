@@ -37,28 +37,28 @@ const SingleAgentCta = ({id}) => {
         </div>
         {/* End single image */}
         <div className="single-contant ml30 ml0-xs">
-          <h2 className="title mb-0">{agentData.name}</h2>
+          <h2 className="title mb-0">{agentData?.name}</h2>
           <p className="fz15">
-            Company Agent at <b>{agentData.company}</b>
+            Company Agent at <b>{agentData?.company}</b>
           </p>
           <div className="agent-meta mb15 d-md-flex align-items-center">
             <a className="text fz15 pe-2 bdrr1" href="#">
               <i className="fas fa-star fz10 review-color2 pr10" />
-              {agentData.reviews}
+              {agentData?.reviews}
             </a>
             <a className="text fz15 pe-2 ps-2 bdrr1" href="#">
               <i className="flaticon-call pe-1" />
-              {agentData.phone1}
+              {agentData?.phone1}
             </a>
             <a className="text fz15 ps-2" href="#">
               <i className="flaticon-smartphone pe-1" />
-              {agentData.phone2}
+              {agentData?.phone2}
             </a>
           </div>
           <div className="agent-social">
-            {agentData.social.map((socialItem, index) => (
-              <a key={index} className="mr20" href={socialItem.link}>
-                <i className={socialItem.icon} />
+            {agentData?.social.map((socialItem, index) => (
+              <a key={index} className="mr20" href={socialItem?.link}>
+                <i className={socialItem?.icon} />
               </a>
             ))}
           </div>

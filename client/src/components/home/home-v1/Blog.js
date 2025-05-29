@@ -67,7 +67,7 @@ const Blog = () => {
                       width={386}
                       height={271}
                       className="w-100 h-72 cover"
-                      src={blog.image[0]}
+                      src={blog?.image[0]}
                       alt={blog?.title || "Blog image"}
                       onError={(e) => {
                         e.target.src = "/fallback-image.jpg";

@@ -52,8 +52,8 @@ const ReviewCard = ({ review, index }) => {
       <div className="flex flex-col justify-center">
         <p className="text-gray-600 text-base md:text-lg leading-relaxed p-4 bg-gray-100 rounded-lg">
           {review?.message?.length > 100
-            ? review.message.slice(0, 100) + "..."
-            : review.message || "No message provided"}
+            ? review?.message.slice(0, 100) + "..."
+            : review?.message || "No message provided"}
         </p>
       </div>
     </div>

@@ -76,7 +76,7 @@ const PropertyDataTable = () => {
       </thead>
       <tbody className="t-body">
         {orders?.map((property) => (
-          <tr key={property.id}>
+          <tr key={property?.id}>
             <th scope="row">
               <div className="listing-style1 dashboard-style d-xxl-flex align-items-center mb-0">
                 <div className="list-thumb">
@@ -96,7 +96,7 @@ const PropertyDataTable = () => {
                   </div>
                   <p className="list-text mb-0">{property?.description}</p>
                   <div className="list-price">
-                    <a href="#">৳ {property.total_price}</a>
+                    <a href="#">৳ {property?.total_price}</a>
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const PropertyDataTable = () => {
                 {property?.status}
               </span>
             </td>
-            <td className="vam">৳ {property.total_price}</td>
+            <td className="vam">৳ {property?.total_price}</td>
           </tr>
         ))}
       </tbody>

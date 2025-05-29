@@ -31,7 +31,7 @@ const PartnerDark = () => {
       }}
       className="swiper-container"
     >
-      {partnerImages.map((imageName, index) => (
+      {partnerImages?.map((imageName, index) => (
         <SwiperSlide key={index}>
           <div className="item">
             <div className="partner_item">

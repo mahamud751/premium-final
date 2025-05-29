@@ -24,7 +24,7 @@ const AllReviews = () => {
                 <div className="pcs_dropdown mb15 d-flex align-items-center">
                   <span style={{ minWidth: "60px" }}>Sort by</span>
                   <select className="form-select">
-                    {sortOptions.map((option, index) => (
+                    {sortOptions?.map((option, index) => (
                       <option key={index}>{option}</option>
                     ))}
                   </select>

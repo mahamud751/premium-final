@@ -42,7 +42,9 @@ const PropertyByCities = () => {
     <section className="our-faq pt-0 md:px-4">
       <div>
         <div className="main-title2">
-          <h2 className="text-2xl md:text-3xl font-bold">Our Projects Section</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">
+            Our Projects Section
+          </h2>
         </div>
         <Swiper
           spaceBetween={30}
@@ -77,10 +79,10 @@ const PropertyByCities = () => {
                 <Link href={`/project/${city?.id}`}>
                   <div className="relative w-full h-48 rounded-lg overflow-hidden">
                     {city?.images &&
-                      Array.isArray(city.images) &&
-                      city.images[0] && (
+                      Array.isArray(city?.images) &&
+                      city?.images[0] && (
                         <Image
-                          src={city.images[0]}
+                          src={city?.images[0]}
                           alt={city?.name || "City image"}
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

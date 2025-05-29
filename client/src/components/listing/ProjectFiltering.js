@@ -79,16 +79,16 @@ const ProjectFiltering = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {locations?.map((city) => (
-            <div className="market_page" key={city.id}>
-              <Link href={`/property/${city.id}`} className="block">
+            <div className="market_page" key={city?.id}>
+              <Link href={`/property/${city?.id}`} className="block">
                 <div className="home9-city-style">
                   <Link href={`/project/${city?.id}`}>
                     <div className="relative w-full h-48 rounded-lg overflow-hidden">
                       {city?.images &&
-                        Array.isArray(city.images) &&
-                        city.images[0] && (
+                        Array.isArray(city?.images) &&
+                        city?.images[0] && (
                           <Image
-                            src={city.images[0]}
+                            src={city?.images[0]}
                             alt={city?.name || "City image"}
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

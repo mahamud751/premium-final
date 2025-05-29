@@ -41,20 +41,20 @@ const activities = [
 const RecentActivities = () => {
   return (
     <>
-      {activities.map((activity, index) => (
+      {activities?.map((activity, index) => (
         <div
           key={index}
           className="recent-activity d-sm-flex align-items-center mb20"
         >
-          <span className={`icon me-3 ${activity.icon} flex-shrink-0`} />
+          <span className={`icon me-3 ${activity?.icon} flex-shrink-0`} />
           <p className="text mb-0 flex-grow-1">
-            {activity.text.split(activity.highlight).map((part, i, array) =>
+            {activity?.text.split(activity?.highlight).map((part, i, array) =>
               i === array.length - 1 ? (
                 part
               ) : (
                 <>
                   {part}
-                  <span className="fw600">{activity.highlight}</span>
+                  <span className="fw600">{activity?.highlight}</span>
                 </>
               )
             )}

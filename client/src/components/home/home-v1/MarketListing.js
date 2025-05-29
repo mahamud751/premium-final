@@ -12,10 +12,10 @@ const MarketListing = ({ listings }) => {
 
   return (
     <>
-      {listings.length > 0 ? (
-        listings.map((listing) => (
-          <div className="item col-lg-4 market_page" key={listing.id}>
-            <Link href={`/property/${listing.id}`}>
+      {listings?.length > 0 ? (
+        listings?.map((listing) => (
+          <div className="item col-lg-4 market_page" key={listing?.id}>
+            <Link href={`/property/${listing?.id}`}>
               {" "}
               <div className="listing-style1">
                 <div className="list-thumb">
@@ -23,13 +23,13 @@ const MarketListing = ({ listings }) => {
                     width={1000}
                     height={1000}
                     className="w-100 h-96 cover"
-                    src={getSingleImage(listing.images)}
+                    src={getSingleImage(listing?.images)}
                     alt="listing"
                   />
                 </div>
                 <div className="list-content">
                   <h6 className="list-title fw-bold">
-                    <Link href={`/property/${listing.id}`}>
+                    <Link href={`/property/${listing?.id}`}>
                       {listing?.description.slice(0, 60) || "Property Listing"}
                     </Link>
                   </h6>
@@ -41,7 +41,7 @@ const MarketListing = ({ listings }) => {
                     >
                       <i className="mr-1 text-teal-500 fas fa-layer-group"></i>
                       {listing?.floor_number
-                        ? `${listing.floor_number} Floor`
+                        ? `${listing?.floor_number} Floor`
                         : "N/A Floor"}
                     </a>
                     <a
@@ -49,7 +49,7 @@ const MarketListing = ({ listings }) => {
                       className="flex items-center text-gray-700 transition-colors duration-200 hover:text-blue-600"
                     >
                       <i className="mr-1 text-blue-500 fas fa-bed"></i>
-                      {listing?.bedroom ? `${listing.bedroom} bed` : "N/A bed"}
+                      {listing?.bedroom ? `${listing?.bedroom} bed` : "N/A bed"}
                     </a>
                     <a
                       href="#"
@@ -57,7 +57,7 @@ const MarketListing = ({ listings }) => {
                     >
                       <i className="mr-1 text-green-500 fas fa-bath"></i>
                       {listing?.bathroom
-                        ? `${listing.bathroom} bath`
+                        ? `${listing?.bathroom} bath`
                         : "N/A bath"}
                     </a>
                     <a
@@ -66,7 +66,7 @@ const MarketListing = ({ listings }) => {
                     >
                       <i className="mr-1 text-purple-500 fas fa-ruler-combined"></i>
                       {listing?.flat_size
-                        ? `${listing.flat_size} sqft`
+                        ? `${listing?.flat_size} sqft`
                         : "N/A sqft"}
                     </a>
                   </div>
@@ -76,13 +76,13 @@ const MarketListing = ({ listings }) => {
                       className="fw-bold"
                       style={{ fontSize: "15px", color: "#10572A" }}
                     >
-                      {listing.total_price.toLocaleString()} ৳
+                      {listing?.total_price.toLocaleString()} ৳
                     </p>
                     <p
                       className="fw-bold"
                       style={{ fontSize: "15px", color: "#10572A" }}
                     >
-                      {listing.status || "N/A"}
+                      {listing?.status || "N/A"}
                     </p>
                   </div>
                 </div>

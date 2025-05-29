@@ -134,16 +134,16 @@ const NotSalePropertyAuction = () => {
                 }}
               >
                 {products?.map((listing) => (
-                  <SwiperSlide key={listing.id}>
+                  <SwiperSlide key={listing?.id}>
                     <div className="item">
                       <div className="listing-style7 mb10">
                         <div className="list-thumb">
-                          <Link href={`/property/${listing.id}`}>
+                          <Link href={`/property/${listing?.id}`}>
                             <Image
                               width={382}
                               height={248}
                               className="w-100 h-80 cover"
-                              src={getSingleImage(listing.images)}
+                              src={getSingleImage(listing?.images)}
                               alt="listings"
                             />
                           </Link>
@@ -166,13 +166,13 @@ const NotSalePropertyAuction = () => {
                         </div>
                         <div className="list-content">
                           <h6 className="list-title">
-                            <Link href={`/property/${listing.id}`}>
-                              {listing.description}
+                            <Link href={`/property/${listing?.id}`}>
+                              {listing?.description}
                             </Link>
                           </h6>
                           <div className="d-flex justify-content-between align-items-center">
                             <div className="list-price">
-                              {listing.total_price.toLocaleString()}{" "}
+                              {listing?.total_price.toLocaleString()}{" "}
                               <span>৳</span>
                             </div>
                             <div className="flex items-center gap-4 bg-gray-50 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
@@ -196,7 +196,7 @@ const NotSalePropertyAuction = () => {
                               >
                                 <i className="fas fa-ruler-combined text-purple-500 mr-1"></i>
                                 {listing?.flat_size
-                                  ? `${listing.flat_size} sqft`
+                                  ? `${listing?.flat_size} sqft`
                                   : "N/A"}
                               </a>
                             </div>

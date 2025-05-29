@@ -2,8 +2,8 @@
 import Pagination from "@/components/common/Pagination";
 import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination as SwiperPagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
 export default function CategoryContent({
@@ -26,14 +26,14 @@ export default function CategoryContent({
   const projectDetails = mainProject || {};
 
   // Ensure floor_images, unit_images, and documents are arrays
-  const floorImages = Array.isArray(projectDetails.floor_images)
-    ? projectDetails.floor_images
+  const floorImages = Array.isArray(projectDetails?.floor_images)
+    ? projectDetails?.floor_images
     : [];
-  const unitImages = Array.isArray(projectDetails.unit_images)
-    ? projectDetails.unit_images
+  const unitImages = Array.isArray(projectDetails?.unit_images)
+    ? projectDetails?.unit_images
     : [];
-  const documents = Array.isArray(projectDetails.documents)
-    ? projectDetails.documents
+  const documents = Array.isArray(projectDetails?.documents)
+    ? projectDetails?.documents
     : [];
 
   return (
@@ -68,7 +68,7 @@ export default function CategoryContent({
                 Location
               </span>
               <span className="text-gray-600">
-                {projectDetails.address || "N/A"}
+                {projectDetails?.address || "N/A"}
               </span>
             </div>
             <div className="flex items-center justify-between border-gray-200 pb-2">
@@ -76,7 +76,7 @@ export default function CategoryContent({
                 <i className="fas fa-compass text-blue-500 mr-2"></i> Facing
               </span>
               <span className="text-gray-600">
-                {projectDetails.facing || "N/A"}
+                {projectDetails?.facing || "N/A"}
               </span>
             </div>
             <div className="flex items-center justify-between border-gray-200 pb-2">
@@ -85,8 +85,8 @@ export default function CategoryContent({
                 Building Height
               </span>
               <span className="text-gray-600">
-                {projectDetails.building_height
-                  ? `${projectDetails.building_height} floor`
+                {projectDetails?.building_height
+                  ? `${projectDetails?.building_height} floor`
                   : "N/A"}
               </span>
             </div>
@@ -96,8 +96,8 @@ export default function CategoryContent({
                 Type
               </span>
               <span className="text-gray-600">
-                {projectDetails.project_type
-                  ? `${projectDetails.project_type} floor`
+                {projectDetails?.project_type
+                  ? `${projectDetails?.project_type} floor`
                   : "N/A"}
               </span>
             </div>
@@ -107,8 +107,8 @@ export default function CategoryContent({
                 Land Area
               </span>
               <span className="text-gray-600">
-                {projectDetails.land_area
-                  ? `${projectDetails.land_area} sqft`
+                {projectDetails?.land_area
+                  ? `${projectDetails?.land_area} sqft`
                   : "N/A"}
               </span>
             </div>
@@ -118,8 +118,8 @@ export default function CategoryContent({
                 Total Share
               </span>
               <span className="text-gray-600">
-                {projectDetails.total_share
-                  ? `${projectDetails.total_share} sqft`
+                {projectDetails?.total_share
+                  ? `${projectDetails?.total_share} sqft`
                   : "N/A"}
               </span>
             </div>
@@ -129,8 +129,8 @@ export default function CategoryContent({
                 Unit Per Floor
               </span>
               <span className="text-gray-600">
-                {projectDetails.unit_per_floor
-                  ? `${projectDetails.unit_per_floor} sqft`
+                {projectDetails?.unit_per_floor
+                  ? `${projectDetails?.unit_per_floor} sqft`
                   : "N/A"}
               </span>
             </div>
@@ -139,8 +139,8 @@ export default function CategoryContent({
                 <i className="fas fa-road text-yellow-500 mr-2"></i> Road Width
               </span>
               <span className="text-gray-600">
-                {projectDetails.road_width
-                  ? `${projectDetails.road_width} ft`
+                {projectDetails?.road_width
+                  ? `${projectDetails?.road_width} ft`
                   : "N/A"}
               </span>
             </div>
@@ -150,7 +150,7 @@ export default function CategoryContent({
                 Date
               </span>
               <span className="text-gray-600">
-                {projectDetails.launching_date || "N/A"}
+                {projectDetails?.launching_date || "N/A"}
               </span>
             </div>
             <div className="flex items-center justify-between border-gray-200 pb-2">
@@ -159,7 +159,7 @@ export default function CategoryContent({
                 Date
               </span>
               <span className="text-gray-600">
-                {projectDetails.hand_over_date || "N/A"}
+                {projectDetails?.hand_over_date || "N/A"}
               </span>
             </div>
             <div className="flex items-center justify-between border-gray-200 pb-2">
@@ -169,7 +169,7 @@ export default function CategoryContent({
                     <i className="fas fa-file-alt text-gray-600 mr-2"></i>{" "}
                     Description
                   </strong>
-                  {projectDetails.description || "No description available"}
+                  {projectDetails?.description || "No description available"}
                 </p>
               </span>
             </div>
@@ -202,7 +202,7 @@ export default function CategoryContent({
               }}
               className="mySwiper"
             >
-              {floorImages.map((image, index) => (
+              {floorImages?.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div className="relative w-full h-80 rounded-lg overflow-hidden">
                     <Image
@@ -236,7 +236,7 @@ export default function CategoryContent({
         )}
 
         {/* Unit Images Slider */}
-        {unitImages.length > 0 && (
+        {unitImages?.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Unit Images
@@ -261,7 +261,7 @@ export default function CategoryContent({
               }}
               className="mySwiper"
             >
-              {unitImages.map((image, index) => (
+              {unitImages?.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div className="relative w-full h-80 rounded-lg overflow-hidden">
                     <Image
@@ -295,13 +295,13 @@ export default function CategoryContent({
         )}
 
         {/* Documents Links */}
-        {documents.length > 0 && (
+        {documents?.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Project Documents
             </h2>
             <ul className="list-group">
-              {documents.map((doc, index) => (
+              {documents?.map((doc, index) => (
                 <li key={index} className="list-group-item">
                   <a
                     href={doc}
@@ -322,8 +322,8 @@ export default function CategoryContent({
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {product?.length > 0 ? (
-            product.map((listing) => (
-              <Link href={`/property/${listing.id}`} key={listing.id}>
+            product?.map((listing) => (
+              <Link href={`/property/${listing?.id}`} key={listing?.id}>
                 <div className="item">
                   <div className="listing-style7 mb10">
                     <div className="list-thumb">
@@ -331,14 +331,14 @@ export default function CategoryContent({
                         width={382}
                         height={248}
                         className="w-100 h-100 cover"
-                        src={getSingleImage(listing.images)}
+                        src={getSingleImage(listing?.images)}
                         alt="listings"
                       />
                       <div className="sale-sticker-wrap">
                         <div className="list-tag2 rounded-0 fz12">FOR SALE</div>
                       </div>
                       <div className="list-meta">
-                        <Link href={`/property/${listing.id}`} className="mr5">
+                        <Link href={`/property/${listing?.id}`} className="mr5">
                           <span className="flaticon-fullscreen" />
                         </Link>
                         {/* <a href="#" className="mr5">
@@ -351,13 +351,13 @@ export default function CategoryContent({
                     </div>
                     <div className="list-content">
                       <h6 className="list-title">
-                        <Link href={`/property/${listing.id}`}>
-                          {listing.description}
+                        <Link href={`/property/${listing?.id}`}>
+                          {listing?.description}
                         </Link>
                       </h6>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="list-price">
-                          {listing.total_price.toLocaleString()} <span>৳</span>
+                          {listing?.total_price.toLocaleString()} <span>৳</span>
                         </div>
                         <div className="flex items-center gap-4 bg-gray-50 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                           <a
@@ -380,7 +380,7 @@ export default function CategoryContent({
                           >
                             <i className="fas fa-ruler-combined text-purple-500 mr-1"></i>
                             {listing?.flat_size
-                              ? `${listing.flat_size} sqft`
+                              ? `${listing?.flat_size} sqft`
                               : "N/A"}
                           </a>
                         </div>

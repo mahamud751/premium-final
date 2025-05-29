@@ -80,12 +80,12 @@ const Pricing = () => {
       {/* End .row */}
 
       <div className="row" data-aos="fade-up" data-aos-delay="300">
-        {pricingPackages.map((item, index) => (
+        {pricingPackages?.map((item, index) => (
           <div className="col-md-6 col-xl-4" key={index}>
             <div className={`pricing_packages ${index === 1 ? "active" : ""}`}>
               <div className="heading mb60">
-                <h4 className={`package_title ${item.uniqueClass || ""}`}>
-                  {item.packageTitle}
+                <h4 className={`package_title ${item?.uniqueClass || ""}`}>
+                  {item?.packageTitle}
                 </h4>
                 <h1 className="text2">
                   {isYearlyBilling
@@ -94,24 +94,24 @@ const Pricing = () => {
                       : index === 1
                       ? "$599.99" // Second object shows "$599.95"
                       : "$999.99" // Third object shows "$999.95"
-                    : item.price}
+                    : item?.price}
                 </h1>
-                <p className="text">{item.pricePerMonth}</p>
+                <p className="text">{item?.pricePerMonth}</p>
                 <Image
                   width={70}
                   height={70}
                   className="price-icon"
-                  src={item.priceIcon}
+                  src={item?.priceIcon}
                   alt="icon"
                 />
               </div>
               <div className="details">
                 <p className="text mb35">
-                  {item.features[0]} {/* Display the first feature */}
+                  {item?.features[0]} {/* Display the first feature */}
                 </p>
                 <div className="list-style1 mb40">
                   <ul>
-                    {item.features.slice(1).map((feature, featureIndex) => (
+                    {item?.features.slice(1).map((feature, featureIndex) => (
                       <li key={featureIndex}>
                         <i className="far fa-check text-white bgc-dark fz15" />
                         {feature}

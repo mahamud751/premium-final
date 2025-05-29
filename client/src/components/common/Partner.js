@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
 const fetchPartnerImages = async () => {
@@ -86,15 +86,15 @@ const Partner = () => {
                 <div className="partner_item text-center">
                   <div className="relative w-full h-40 rounded-lg overflow-hidden">
                     {vendor?.image &&
-                    ((Array.isArray(vendor.image) && vendor.image[0]) ||
-                      (!Array.isArray(vendor.image) &&
-                        vendor.image &&
-                        !vendor.image.endsWith("/storage"))) ? (
+                    ((Array.isArray(vendor?.image) && vendor?.image[0]) ||
+                      (!Array.isArray(vendor?.image) &&
+                        vendor?.image &&
+                        !vendor?.image.endsWith("/storage"))) ? (
                       <Image
                         src={
-                          Array.isArray(vendor.image)
-                            ? vendor.image[0]
-                            : vendor.image
+                          Array.isArray(vendor?.image)
+                            ? vendor?.image[0]
+                            : vendor?.image
                         }
                         alt={vendor?.name || "Vendor image"}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

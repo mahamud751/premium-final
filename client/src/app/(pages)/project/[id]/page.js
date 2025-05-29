@@ -49,7 +49,7 @@ const Project = () => {
     queryFn: () => fetchSingleProject(),
   });
 
-  const mainProject = projectData?.data?.find((project) => project.id == id);
+  const mainProject = projectData?.data?.find((project) => project?.id == id);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -66,7 +66,7 @@ const Project = () => {
             {isLoading ? (
               <p>Loading...</p>
             ) : error ? (
-              <p>Error: {error.message}</p>
+              <p>Error: {error?.message}</p>
             ) : (
               <CategoryContent
                 product={data?.data}

@@ -27,8 +27,8 @@ const PopularListings = ({data = listings }) => {
           },
         }}
       >
-        {data.slice(0, 8).map((listing) => (
-          <SwiperSlide key={listing.id}>
+        {data?.slice(0, 8).map((listing) => (
+          <SwiperSlide key={listing?.id}>
             <div className="item">
               <div className="listing-style1">
                 <div className="list-thumb">
@@ -36,11 +36,11 @@ const PopularListings = ({data = listings }) => {
                     width={382}
                     height={248}
                     className="w-100 h-100 cover"
-                    src={listing.image}
+                    src={listing?.image}
                     alt="listings"
                   />
                   <div className="sale-sticker-wrap">
-                    {listing.featured && (
+                    {listing?.featured && (
                       <div className="list-tag fz12">
                         <span className="flaticon-electricity me-2" />
                         FEATURED
@@ -49,23 +49,23 @@ const PopularListings = ({data = listings }) => {
                   </div>
 
                   <div className="list-price">
-                    {listing.price} / <span>mo</span>
+                    {listing?.price} / <span>mo</span>
                   </div>
                 </div>
                 <div className="list-content">
                   <h6 className="list-title">
-                    <Link href={`/single-v2/${listing.id}`}>{listing.title}</Link>
+                    <Link href={`/single-v2/${listing?.id}`}>{listing?.title}</Link>
                   </h6>
-                  <p className="list-text">{listing.location}</p>
+                  <p className="list-text">{listing?.location}</p>
                   <div className="list-meta d-flex align-items-center">
                     <a href="#">
-                      <span className="flaticon-bed" /> {listing.bed} bed
+                      <span className="flaticon-bed" /> {listing?.bed} bed
                     </a>
                     <a href="#">
-                      <span className="flaticon-shower" /> {listing.bath} bath
+                      <span className="flaticon-shower" /> {listing?.bath} bath
                     </a>
                     <a href="#">
-                      <span className="flaticon-expand" /> {listing.sqft} sqft
+                      <span className="flaticon-expand" /> {listing?.sqft} sqft
                     </a>
                   </div>
                   <hr className="mt-2 mb-2" />

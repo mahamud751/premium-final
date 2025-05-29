@@ -126,7 +126,7 @@ const ListingSidebar = ({filterFunctions}) => {
       {/* End .widget-wrapper */}
 
       <div className="reset-area d-flex align-items-center justify-content-between">
-        <div onClick={()=>filterFunctions.resetFilter()} className="reset-button cursor" href="#">
+        <div onClick={()=>filterFunctions?.resetFilter()} className="reset-button cursor" href="#">
           <span className="flaticon-turn-back" />
           <u>Reset all filters</u>
         </div>

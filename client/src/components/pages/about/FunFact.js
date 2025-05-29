@@ -26,7 +26,7 @@ const FunFact = () => {
 
   return (
     <>
-      {funFacts.map((item, index) => (
+      {funFacts?.map((item, index) => (
         <div className="col-md-4" key={index}>
           <div className="funfact_one text-center">
             <div className="details">
@@ -34,14 +34,14 @@ const FunFact = () => {
                 <li>
                   <div className="timer">
                     {" "}
-                    <CounterWithAnimation end={item.number} />
+                    <CounterWithAnimation end={item?.number} />
                   </div>
                 </li>
                 <li>
-                  <span>{item.unit}</span>
+                  <span>{item?.unit}</span>
                 </li>
               </ul>
-              <p className="text mb-0">{item.text}</p>
+              <p className="text mb-0">{item?.text}</p>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ const MultiSelectField = () => {
   const fieldTitles = ["Floors no", "Energy Class", "Energy index in kWh/m2a"];
   return (
     <>
-      {Object.keys(options).map((key, index) => (
+      {Object?.keys(options).map((key, index) => (
         <div className="col-sm-6 col-xl-4" key={index}>
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">

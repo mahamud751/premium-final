@@ -54,7 +54,7 @@ export default function FAQSection() {
         <div className="w-full md:w-1/4 bg-[#046C4E] text-white p-3 md:p-6 rounded-xl shadow-lg">
           <h2 className="text-xl font-bold md:mb-6 text-white">Categories</h2>
           <ul className="space-y-3">
-            {Object.keys(faqData).map((category) => (
+            {Object?.keys(faqData).map((category) => (
               <li
                 key={category}
                 className={`md:p-3 p-2 cursor-pointer rounded-lg transition-all duration-300 ${

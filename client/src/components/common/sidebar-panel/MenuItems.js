@@ -11,10 +11,10 @@ const MenuItems = () => {
 
   return (
     <ul className="navbar-nav">
-      {menuItems.map((item) => (
-        <li className="nav-item" key={item.id}>
+      {menuItems?.map((item) => (
+        <li className="nav-item" key={item?.id}>
           <a className="nav-link" href="#" role="button">
-            {item.title}
+            {item?.title}
           </a>
         </li>
       ))}

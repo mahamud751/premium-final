@@ -54,8 +54,8 @@ const FeaturedListings = () => {
           },
         }}
       >
-        {property.slice(0, 4).map((listing) => (
-          <SwiperSlide key={listing.id} className="item-range">
+        {property?.slice(0, 4).map((listing) => (
+          <SwiperSlide key={listing?.id} className="item-range">
             <div className="item">
               <div className="listing-style1">
                 {/* <div className="list-thumb">
@@ -63,11 +63,11 @@ const FeaturedListings = () => {
                     width={382}
                     height={248}
                     className="w-100 h-100 cover"
-                    src={listing.image}
+                    src={listing?.image}
                     alt="listings"
                   />
                 </div> */}
-                {listing.documents?.map((doc) => (
+                {listing?.documents?.map((doc) => (
                   <div className="list-thumb">
                     <Image
                       width={382}
@@ -80,11 +80,11 @@ const FeaturedListings = () => {
                 ))}
                 <div className="list-content">
                   <h6 className="list-title fw-bold">
-                    <Link href={`/single-v1/${listing.id}`}>
-                      {listing.propertyTitle}
+                    <Link href={`/single-v1/${listing?.id}`}>
+                      {listing?.propertyTitle}
                     </Link>
                   </h6>
-                  <p className="list-text">{listing.address}</p>
+                  <p className="list-text">{listing?.address}</p>
                   <div className="list-meta d-flex align-items-center">
                     <a href="#">
                       <span className="mr-2">
