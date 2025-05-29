@@ -144,7 +144,7 @@ const DashboardHeader = () => {
                         </a>
                         <div className="dropdown-menu">
                           <div className="user_setting_content">
-                            {menuItems.map((section, sectionIndex) => (
+                            {menuItems?.map((section, sectionIndex) => (
                               <div key={sectionIndex}>
                                 <p
                                   className={`fz15 fw400 ff-heading ${
@@ -153,16 +153,16 @@ const DashboardHeader = () => {
                                 >
                                   {section.title}
                                 </p>
-                                {section.items.map((item, itemIndex) => (
+                                {section?.items.map((item, itemIndex) => (
                                   <Link
                                     key={itemIndex}
                                     className={`dropdown-item ${
-                                      pathname == item.href ? "-is-active" : ""
+                                      pathname == item?.href ? "-is-active" : ""
                                     } `}
-                                    href={item.href}
+                                    href={item?.href}
                                   >
-                                    <i className={`${item.icon} mr10`} />
-                                    {item.text}
+                                    <i className={`${item?.icon} mr10`} />
+                                    {item?.text}
                                   </Link>
                                 ))}
                               </div>

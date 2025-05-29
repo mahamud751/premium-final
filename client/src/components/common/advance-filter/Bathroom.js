@@ -10,15 +10,15 @@ const Bathroom = () => {
 
   return (
     <>
-      {bathOptions.map((option, index) => (
+      {bathOptions?.map((option, index) => (
         <div className="selection" key={option.id}>
           <input
-            id={option.id}
+            id={option?.id}
             name="ybath"
             type="radio"
             defaultChecked // Set the first option as defaultChecked
           />
-          <label htmlFor={option.id}>{option.label}</label>
+          <label htmlFor={option?.id}>{option?.label}</label>
         </div>
       ))}
     </>

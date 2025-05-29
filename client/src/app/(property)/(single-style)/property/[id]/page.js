@@ -46,7 +46,7 @@ const Propery = () => {
   const layoutImages = Array.isArray(product?.layout_images)
     ? product.layout_images
     : [];
-  const documents = Array.isArray(product?.documents) ? product.documents : [];
+  const documents = Array.isArray(product?.documents) ? product?.documents : [];
 
   return (
     <>
@@ -133,11 +133,11 @@ const Propery = () => {
                 )}
 
                 {/* Documents Links */}
-                {documents.length > 0 && (
+                {documents?.length > 0 && (
                   <div className="mt50 mb30">
                     <h4 className="title fz17 mb30">Documents</h4>
                     <ul className="list-group">
-                      {documents.map((doc, index) => (
+                      {documents?.map((doc, index) => (
                         <li key={index} className="list-group-item">
                           <a
                             href={doc}

@@ -12,17 +12,17 @@ const Bedroom = ({filterFunctions}) => {
 
   return (
     <>
-      {bedOptions.map((option, index) => (
-        <div className="selection" key={option.id}>
+      {bedOptions?.map((option, index) => (
+        <div className="selection" key={option?.id}>
           <input
-            id={option.id}
+            id={option?.id}
            
             type="radio"
-            onChange={(e)=>filterFunctions?.handlebedrooms(option.value)}
-            checked={filterFunctions?.bedrooms == option.value}
+            onChange={(e)=>filterFunctions?.handlebedrooms(option?.value)}
+            checked={filterFunctions?.bedrooms == option?.value}
             
           />
-          <label htmlFor={option.id}>{option.label}</label>
+          <label htmlFor={option?.id}>{option?.label}</label>
         </div>
       ))}
     </>

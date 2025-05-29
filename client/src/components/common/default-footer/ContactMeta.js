@@ -21,35 +21,35 @@ const ContactMeta = () => {
 
   return (
     <div className="row mb-4 mb-lg-5">
-      {contactInfoList.map((contact, index) => (
+      {contactInfoList?.map((contact, index) => (
         <div className="col-auto" key={index}>
           <div className="contact-info rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
             <p className="info-title text-lg font-semibold text-gray-900 mb-2">
-              {contact.title}
+              {contact?.title}
             </p>
-            {contact.phone && (
+            {contact?.phone && (
               <div className="info-phone flex flex-col gap-1">
-                {contact.phone
+                {contact?.phone
                   .trim()
                   .split("\n")
                   .map((phoneNumber, idx) => (
                     <a
                       key={idx}
-                      href={contact.phoneLink}
+                      href={contact?.phoneLink}
                       className="text-base text-gray-600 hover:text-[#10572A] transition-colors duration-200"
                     >
-                      {phoneNumber.trim()}
+                      {phoneNumber?.trim()}
                     </a>
                   ))}
               </div>
             )}
-            {contact.mail && (
+            {contact?.mail && (
               <h6 className="info-mail">
                 <a
-                  href={contact.mailLink}
+                  href={contact?.mailLink}
                   className="text-base text-gray-600 hover:text-[#10572A] transition-colors duration-200"
                 >
-                  {contact.mail}
+                  {contact?.mail}
                 </a>
               </h6>
             )}

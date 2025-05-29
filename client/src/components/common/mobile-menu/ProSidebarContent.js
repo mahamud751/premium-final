@@ -46,27 +46,27 @@ const ProSidebarContent = () => {
       onBackdropClick={() => setIsCollapsed(true)}
     >
       <Menu>
-        {updatedMenuItems.map((item, index) => (
+        {updatedMenuItems?.map((item, index) => (
           <MenuItem
             key={index}
             component={
               item.onClick ? (
                 <button
-                  onClick={item.onClick}
-                  className={item.link === path ? "active" : ""}
+                  onClick={item?.onClick}
+                  className={item?.link === path ? "active" : ""}
                 >
-                  {item.label}
+                  {item?.label}
                 </button>
               ) : (
                 <Link
-                  href={item.link}
-                  className={item.link === path ? "active" : ""}
+                  href={item?.link}
+                  className={item?.link === path ? "active" : ""}
                   onClick={handleLinkClick}
                 />
               )
             }
           >
-            {item.label}
+            {item?.label}
           </MenuItem>
         ))}
       </Menu>

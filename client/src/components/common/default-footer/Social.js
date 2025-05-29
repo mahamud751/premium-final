@@ -18,15 +18,15 @@ const Social = () => {
 
   return (
     <div className="social-style1">
-      {socialLinks.map((social, index) => (
+      {socialLinks?.map((social, index) => (
         <a
           key={index}
-          href={social.url}
+          href={social?.url}
           target="_blank"
           rel="noopener noreferrer"
           className="list-inline-item"
         >
-          <i className={social.icon} />
+          <i className={social?.icon} />
         </a>
       ))}
     </div>

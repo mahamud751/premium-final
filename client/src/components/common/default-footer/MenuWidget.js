@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import { useAuth } from "@/hooks/auth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useAuth } from "@/hooks/auth";
+import Link from "next/link";
 
 const MenuWidget = () => {
   const { token } = useAuth();
@@ -80,24 +79,24 @@ const MenuWidget = () => {
 
   return (
     <>
-      {menuSections.map((section, index) => (
+      {menuSections?.map((section, index) => (
         <div className="col-auto" key={index}>
           <div className="link-style1 mb-3">
-            <h6 className="text-white mb25">{section.title}</h6>
+            <h6 className="text-white mb25">{section?.title}</h6>
             <ul className="ps-0">
-              {section.links.map((link, linkIndex) => (
+              {section?.links?.map((link, linkIndex) => (
                 <li key={linkIndex}>
-                  {link.isNextLink ? (
-                    <Link href={link.href} className="text-decoration-none">
-                      {link.label}
+                  {link?.isNextLink ? (
+                    <Link href={link?.href} className="text-decoration-none">
+                      {link?.label}
                     </Link>
                   ) : (
                     <a
-                      href={link.href}
-                      target={link.target || "_self"}
-                      rel={link.rel || ""}
+                      href={link?.href}
+                      target={link?.target || "_self"}
+                      rel={link?.rel || ""}
                     >
-                      {link.label}
+                      {link?.label}
                     </a>
                   )}
                 </li>

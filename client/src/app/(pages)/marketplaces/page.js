@@ -111,11 +111,10 @@ const Auction = () => {
       <section className="pt0 pb90 bg-red">
         <div className="container">
           <div className="row">
-            {listings.length > 0 ? (
+            {listings?.length > 0 ? (
               listings?.map((listing) => {
-                console.log("listing", listing);
                 return (
-                  <div className="item col-lg-4 market_page" key={listing.id}>
+                  <div className="item col-lg-4 market_page" key={listing?.id}>
                     <div className="listing-style1">
                       <div className="list-thumb">
                         <Link href={`/property/${listing?.product?.id}`}>
@@ -175,7 +174,7 @@ const Auction = () => {
                             </a>
                           </div>
                         </Link>
-                        <Link href={`/property/${listing.id}`}>
+                        <Link href={`/property/${listing?.id}`}>
                           <div className="mb-2 d-flex justify-content-between">
                             <p
                               className="fw-bold"

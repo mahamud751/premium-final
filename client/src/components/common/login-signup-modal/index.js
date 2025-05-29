@@ -1,5 +1,4 @@
 import SignIn from "./SignIn";
-import SignUp from "./SignUp";
 
 const LoginSignupModal = ({ closeModal }) => {
   return (
