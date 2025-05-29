@@ -14,7 +14,7 @@ const CCTVStream = ({ order }) => {
     const hlsInstances = [];
 
     import("hls.js").then((Hls) => {
-      cc_camera_urls?.forEach((videoSrc, index) => {
+      cc_camera_urls.forEach((videoSrc, index) => {
         const video = videoRefs.current[index];
         if (!video) return;
 
@@ -45,7 +45,7 @@ const CCTVStream = ({ order }) => {
           <div key={index} className="mb-8 w-full flex flex-col items-center">
             <h2 className="text-xl font-semibold mb-2">Camera {index + 1}</h2>
             <video
-              ref={(el) => (videoRefs?.current[index] = el)}
+              ref={(el) => (videoRefs.current[index] = el)}
               className={`w-full lg:w-3/4`}
               controls
               autoPlay
