@@ -80,17 +80,6 @@ const JournalList = () => {
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1, minWidth: 160 },
     {
-      field: "project_id",
-      headerName: "Project ID",
-      flex: 1,
-      minWidth: 120,
-      renderCell: (params) => (
-        <div>
-          <p>{params.row.project_id}</p>
-        </div>
-      ),
-    },
-    {
       field: "reference_number",
       headerName: "Reference Number",
       flex: 1,
@@ -104,39 +93,6 @@ const JournalList = () => {
       minWidth: 120,
     },
 
-    {
-      field: "items",
-      headerName: "Items",
-      flex: 1,
-      minWidth: 150,
-      renderCell: (params) => (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            marginTop: 10,
-          }}
-        >
-          {params.row.items && params.row.items.length > 0 && (
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => handleOpenItemsModal(params.row.items)}
-            >
-              Items Details
-            </Button>
-          )}
-        </div>
-      ),
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      flex: 1,
-      minWidth: 160,
-      renderCell: (params) => <StatusButton status={params.value} />,
-    },
     {
       field: "update",
       headerName: "Status Update",
