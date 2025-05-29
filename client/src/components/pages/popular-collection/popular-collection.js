@@ -67,25 +67,25 @@ const PopularCollection = () => {
           }}
           elementClassNames="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6"
         >
-          {collections.map((collection, index) => (
+          {collections?.map((collection, index) => (
             <a
               key={index}
               className="relative group cursor-pointer"
-              data-src={collection.videoUrl}
-              data-sub-html={`<h4>${collection.category}</h4><p>${collection.location}</p>`}
+              data-src={collection?.videoUrl}
+              data-sub-html={`<h4>${collection?.category}</h4><p>${collection?.location}</p>`}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
                 <h3 className="text-lg font-semibold uppercase">
-                  {collection.category}
+                  {collection?.category}
                 </h3>
                 <p className="text-sm border rounded px-3 py-1 uppercase">
-                  {collection.location}
+                  {collection?.location}
                 </p>
               </div>
               <div className="relative">
                 <img
-                  src={collection.thumbnail}
-                  alt={collection.category}
+                  src={collection?.thumbnail}
+                  alt={collection?.category}
                   className="w-full h-48 sm:h-64 object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
