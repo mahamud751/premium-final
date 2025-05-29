@@ -187,7 +187,7 @@ const SidebarDashboard = () => {
             />
           )}
         </div>
-        {sidebarItems.map((section, sectionIndex) => (
+        {sidebarItems?.map((section, sectionIndex) => (
           <div key={sectionIndex} style={{ marginBottom: "24px" }}>
             {section.title && (
               <p
@@ -204,24 +204,24 @@ const SidebarDashboard = () => {
                 {section.title}
               </p>
             )}
-            {section.items.map((item, itemIndex) => (
+            {section?.items.map((item, itemIndex) => (
               <div
                 key={itemIndex}
                 className="sidebar_list_item"
                 style={{ marginBottom: "8px" }}
               >
-                {item.isLogout ? (
+                {item?.isLogout ? (
                   <button
                     onClick={handleLogout}
                     className={`items-center w-full text-left ${
-                      pathname === item.href ? "-is-active" : ""
+                      pathname === item?.href ? "-is-active" : ""
                     }`}
                     style={{
                       padding: "12px 16px",
                       borderRadius: "8px",
-                      color: pathname === item.href ? "#1e3a8a" : "#4b5563",
+                      color: pathname === item?.href ? "#1e3a8a" : "#4b5563",
                       background:
-                        pathname === item.href ? "#e0f2fe" : "transparent",
+                        pathname === item?.href ? "#e0f2fe" : "transparent",
                       transition: "background 0.2s, color 0.2s",
                       fontSize: "15px",
                       fontWeight: "500",
@@ -233,31 +233,31 @@ const SidebarDashboard = () => {
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.background =
-                        pathname === item.href ? "#e0f2fe" : "transparent")
+                        pathname === item?.href ? "#e0f2fe" : "transparent")
                     }
                   >
                     <i
-                      className={`${item.icon} mr15`}
+                      className={`${item?.icon} mr15`}
                       style={{
-                        color: iconStyles[item.icon] || "#6b7280",
+                        color: iconStyles[item?.icon] || "#6b7280",
                         fontSize: "18px",
                       }}
                     />
-                    {item.text}
+                    {item?.text}
                   </button>
                 ) : (
                   <Link
-                    href={item.href}
+                    href={item?.href}
                     className={`items-center ${
-                      pathname === item.href ? "-is-active" : ""
+                      pathname === item?.href ? "-is-active" : ""
                     }`}
                     style={{
                       display: "flex",
                       padding: "12px 16px",
                       borderRadius: "8px",
-                      color: pathname === item.href ? "#1e3a8a" : "#4b5563",
+                      color: pathname === item?.href ? "#1e3a8a" : "#4b5563",
                       background:
-                        pathname === item.href ? "#e0f2fe" : "transparent",
+                        pathname === item?.href ? "#e0f2fe" : "transparent",
                       transition: "background 0.2s, color 0.2s",
                       fontSize: "15px",
                       fontWeight: "500",
@@ -268,18 +268,18 @@ const SidebarDashboard = () => {
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.background =
-                        pathname === item.href ? "#e0f2fe" : "transparent")
+                        pathname === item?.href ? "#e0f2fe" : "transparent")
                     }
                   >
                     <i
-                      className={`${item.icon} mr15`}
+                      className={`${item?.icon} mr15`}
                       style={{
-                        color: iconStyles[item.icon] || "#6b7280",
+                        color: iconStyles[item?.icon] || "#6b7280",
                         fontSize: "18px",
                       }}
                     />
-                    {item.text}
-                    {item.total >= 0 && (
+                    {item?.text}
+                    {item?.total >= 0 && (
                       <span
                         style={{
                           marginLeft: "auto",
@@ -291,7 +291,7 @@ const SidebarDashboard = () => {
                           fontWeight: "600",
                         }}
                       >
-                        {item.total}
+                        {item?.total}
                       </span>
                     )}
                   </Link>

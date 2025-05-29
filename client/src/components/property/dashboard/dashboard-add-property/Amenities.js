@@ -33,7 +33,7 @@ const amenitiesData = {
 const Amenities = () => {
   return (
     <div className="row">
-      {Object.keys(amenitiesData).map((columnKey, index) => (
+      {Object?.keys(amenitiesData).map((columnKey, index) => (
         <div key={index} className="col-sm-6 col-lg-3 col-xxl-2">
           <div className="checkbox-style1">
             {amenitiesData[columnKey].map((amenity, amenityIndex) => (
@@ -41,7 +41,7 @@ const Amenities = () => {
                 {amenity.label}
                 <input
                   type="checkbox"
-                  defaultChecked={amenity.defaultChecked}
+                  defaultChecked={amenity?.defaultChecked}
                 />
                 <span className="checkmark" />
               </label>

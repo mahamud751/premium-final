@@ -60,46 +60,46 @@ const SearchDataTable = () => {
         </tr>
       </thead>
       <tbody className="t-body">
-        {listingData.map((listing, index) => (
+        {listingData?.map((listing, index) => (
           <tr key={index}>
-            <th scope="row">{listing.title}</th>
-            <td>{listing.date}</td>
+            <th scope="row">{listing?.title}</th>
+            <td>{listing?.date}</td>
             <td>
               <div className="d-flex">
                 <button
                   className="icon"
                   style={{ border: "none" }}
-                  data-tooltip-id={`full_screen-${listing.id}`}
+                  data-tooltip-id={`full_screen-${listing?.id}`}
                 >
                   <span className="flaticon-fullscreen-1" />
                 </button>
                 <button
                   className="icon"
                   style={{ border: "none" }}
-                  data-tooltip-id={`edit-${listing.id}`}
+                  data-tooltip-id={`edit-${listing?.id}`}
                 >
                   <span className="fas fa-pen fa" />
                 </button>
                 <button
                   className="icon"
                   style={{ border: "none" }}
-                  data-tooltip-id={`delete-${listing.id}`}
+                  data-tooltip-id={`delete-${listing?.id}`}
                 >
                   <span className="flaticon-bin" />
                 </button>
 
                 <ReactTooltip
-                  id={`full_screen-${listing.id}`}
+                  id={`full_screen-${listing?.id}`}
                   place="top"
                   content="Full Screen"
                 />
                 <ReactTooltip
-                  id={`edit-${listing.id}`}
+                  id={`edit-${listing?.id}`}
                   place="top"
                   content="Edi"
                 />
                 <ReactTooltip
-                  id={`delete-${listing.id}`}
+                  id={`delete-${listing?.id}`}
                   place="top"
                   content="Delete"
                 />

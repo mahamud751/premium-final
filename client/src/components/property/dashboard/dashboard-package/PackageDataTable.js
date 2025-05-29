@@ -97,14 +97,14 @@ const PackageDataTable = () => {
         </tr>
       </thead>
       <tbody className="t-body">
-        {packageData.map((packageItem, index) => (
+        {packageData?.map((packageItem, index) => (
           <tr key={index}>
-            <th scope="row">{packageItem.type}</th>
-            <td>{packageItem.propertiesRemaining}</td>
-            <td>{packageItem.featuredRemaining}</td>
-            <td>{packageItem.renewalRemaining}</td>
-            <td>{packageItem.storageSpace}</td>
-            <td>{packageItem.expiryDate}</td>
+            <th scope="row">{packageItem?.type}</th>
+            <td>{packageItem?.propertiesRemaining}</td>
+            <td>{packageItem?.featuredRemaining}</td>
+            <td>{packageItem?.renewalRemaining}</td>
+            <td>{packageItem?.storageSpace}</td>
+            <td>{packageItem?.expiryDate}</td>
           </tr>
         ))}
       </tbody>

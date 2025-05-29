@@ -91,8 +91,8 @@ const NotSaleProperty = () => {
               >
                 {products?.map((listing) => {
                   return (
-                    <SwiperSlide key={listing.id}>
-                      <Link href={`/property/${listing.id}`}>
+                    <SwiperSlide key={listing?.id}>
+                      <Link href={`/property/${listing?.id}`}>
                         <div className="item">
                           <div className="listing-style7 mb10">
                             <div className="list-thumb">
@@ -100,7 +100,7 @@ const NotSaleProperty = () => {
                                 width={382}
                                 height={248}
                                 className="w-100 h-80 cover"
-                                src={getSingleImage(listing.images)}
+                                src={getSingleImage(listing?.images)}
                                 alt="listings"
                               />
                               <div className="sale-sticker-wrap">
@@ -111,7 +111,7 @@ const NotSaleProperty = () => {
 
                               <div className="list-meta">
                                 <Link
-                                  href={`/property/${listing.id}`}
+                                  href={`/property/${listing?.id}`}
                                   className="mr5"
                                 >
                                   <span className="flaticon-fullscreen" />
@@ -126,8 +126,8 @@ const NotSaleProperty = () => {
                             </div>
                             <div className="list-content">
                               <h6 className="list-title">
-                                <Link href={`/product/${listing.id}`}>
-                                  {listing.description}
+                                <Link href={`/product/${listing?.id}`}>
+                                  {listing?.description}
                                 </Link>
                               </h6>
 
@@ -157,7 +157,7 @@ const NotSaleProperty = () => {
                                   >
                                     <i className="fas fa-ruler-combined text-purple-500 mr-1"></i>
                                     {listing?.flat_size
-                                      ? `${listing.flat_size} sqft`
+                                      ? `${listing?.flat_size} sqft`
                                       : "N/A"}
                                   </a>
                                 </div>
