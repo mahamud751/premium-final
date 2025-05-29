@@ -24,12 +24,12 @@ const PropertyType = ({filterFunctions}) => {
   />
           <span className="checkmark" />
         </label>
-      {options.map((option, index) => (
+      {options?.map((option, index) => (
         <label className="custom_checkbox" key={index} >
-          {option.label}
+          {option?.label}
           <input type="checkbox"
-          checked={filterFunctions?.propertyTypes.includes(option.label)}
-          onChange={(e=>{filterFunctions.handlepropertyTypes(option.label)})}
+          checked={filterFunctions?.propertyTypes.includes(option?.label)}
+          onChange={(e=>{filterFunctions.handlepropertyTypes(option?.label)})}
   />
           <span className="checkmark" />
         </label>

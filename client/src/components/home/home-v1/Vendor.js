@@ -16,7 +16,7 @@ const Vendor = () => {
         },
       }
     );
-    return response.data.data;
+    return response?.data?.data;
   };
 
   const { data: data, isLoading } = useQuery({
@@ -39,15 +39,15 @@ const Vendor = () => {
       <div className="grid grid-cols-1 mt-5 md:mt-0 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {data?.map((vendor) => (
           <div
-            key={vendor.id}
+            key={vendor?.id}
             className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
           >
             <div className="w-full h-48 relative">
               {vendor?.image &&
-                Array.isArray(vendor.image) &&
-                vendor.image[0] && (
+                Array.isArray(vendor?.image) &&
+                vendor?.image[0] && (
                   <Image
-                    src={vendor.image[0]}
+                    src={vendor?.image[0]}
                     alt={vendor?.name || "City image"}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -57,8 +57,8 @@ const Vendor = () => {
                 )}
             </div>
             <div className="p-4">
-              <h3 className="text-xl font-semibold">{vendor.name}</h3>
-              <p className="text-gray-500 mt-1">{vendor.info}</p>
+              <h3 className="text-xl font-semibold">{vendor?.name}</h3>
+              <p className="text-gray-500 mt-1">{vendor?.info}</p>
             </div>
           </div>
         ))}

@@ -56,12 +56,12 @@ const RealStateCombines = () => {
   ];
   return (
     <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 mt-3 g-3">
-      {cardsData.map((card, index) => (
+      {cardsData?.map((card, index) => (
         <div key={index} className="col">
           <div style={{ backgroundColor: "#FEF4F3", padding: "20px" }}>
-            <Image width={30} height={30} src={card.imageSrc} alt="Pic" />
-            <h6 className="mt-2">{card.title}</h6>
-            <p>{card.description}</p>
+            <Image width={30} height={30} src={card?.imageSrc} alt="Pic" />
+            <h6 className="mt-2">{card?.title}</h6>
+            <p>{card?.description}</p>
             <div>
               <FaStar style={{ color: "#ff7700" }} />
               <FaStar style={{ color: "#ff7700" }} />
@@ -72,11 +72,11 @@ const RealStateCombines = () => {
             <hr />
             <div className="d-flex gap-3 justify-items-center">
               <div>
-                <Image width={60} height={60} src={card.avatarSrc} alt="Pic" />
+                <Image width={60} height={60} src={card?.avatarSrc} alt="Pic" />
               </div>
               <div>
-                <p>{card.name}</p>
-                <p style={{ lineHeight: 0 }}>{card.company}</p>
+                <p>{card?.name}</p>
+                <p style={{ lineHeight: 0 }}>{card?.company}</p>
               </div>
             </div>
           </div>

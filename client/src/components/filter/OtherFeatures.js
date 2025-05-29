@@ -27,11 +27,11 @@ const OtherFeatures = ({filterFunctions}) => {
     <div className="row">
       <div className="col-lg-6">
         <div className="checkbox-style1">
-          {featuresLeftColumn.map((feature, index) => (
+          {featuresLeftColumn?.map((feature, index) => (
             <label className="custom_checkbox" key={index}>
-              {feature.label}
-              <input checked={filterFunctions?.categories.includes(feature.label)}
-             type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature.label)}  />
+              {feature?.label}
+              <input checked={filterFunctions?.categories.includes(feature?.label)}
+             type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature?.label)}  />
               <span className="checkmark" />
             </label>
           ))}
@@ -41,11 +41,11 @@ const OtherFeatures = ({filterFunctions}) => {
 
       <div className="col-lg-6">
         <div className="checkbox-style1">
-          {featuresRightColumn.map((feature, index) => (
+          {featuresRightColumn?.map((feature, index) => (
             <label className="custom_checkbox" key={index}>
               {feature.label}
               
-              <input type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature.label)}  defaultChecked={feature.defaultChecked} />
+              <input type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature?.label)}  defaultChecked={feature?.defaultChecked} />
               <span className="checkmark" />
             </label>
           ))}

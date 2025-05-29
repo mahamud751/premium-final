@@ -39,7 +39,7 @@ const CustomerReviews = () => {
         },
       }}
     >
-      {apartmentType.map((type) => (
+      {apartmentType?.map((type) => (
         <SwiperSlide
           key={type.id}
           style={{

@@ -9,7 +9,7 @@ function BlogContent({ blog }) {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Image
-            src={blog.image[0]}
+            src={blog?.image[0]}
             alt="Blog hero"
             width={1200}
             height={600}
@@ -18,7 +18,7 @@ function BlogContent({ blog }) {
           />
           <div className="md:mt-6">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              {blog.title}
+              {blog?.title}
             </h1>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-gray-600">
               <div className="flex items-center gap-2">
@@ -28,7 +28,7 @@ function BlogContent({ blog }) {
               <div className="flex items-center gap-2">
                 <FaCalendar />
                 <span>
-                  {new Date(blog.created_at).toLocaleDateString("en-US", {
+                  {new Date(blog?.created_at).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -42,7 +42,7 @@ function BlogContent({ blog }) {
         <div className="flex flex-col lg:flex-row gap-8">
           <article className="lg:w-2/3 ">
             <div className="prose prose-lg max-w-none text-gray-700">
-              <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+              <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
             </div>
           </article>
         </div>

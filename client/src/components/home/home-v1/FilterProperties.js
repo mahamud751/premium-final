@@ -102,8 +102,8 @@ const FilterProperties = () => {
               >
                 {products?.map((listing) => {
                   return (
-                    <SwiperSlide key={listing.id}>
-                      <Link href={`/property/${listing.id}`}>
+                    <SwiperSlide key={listing?.id}>
+                      <Link href={`/property/${listing?.id}`}>
                         <div className="item">
                           <div className="listing-style7 mb10">
                             <div className="list-thumb">
@@ -133,7 +133,7 @@ const FilterProperties = () => {
 
                               <div className="list-meta">
                                 <Link
-                                  href={`/property/${listing.id}`}
+                                  href={`/property/${listing?.id}`}
                                   className="mr5"
                                 >
                                   <span className="flaticon-fullscreen" />
@@ -181,7 +181,7 @@ const FilterProperties = () => {
                                   >
                                     <i className="fas fa-ruler-combined text-purple-500 mr-1"></i>
                                     {listing?.flat_size
-                                      ? `${listing.flat_size} sqft`
+                                      ? `${listing?.flat_size} sqft`
                                       : "N/A"}
                                   </a>
                                 </div>
