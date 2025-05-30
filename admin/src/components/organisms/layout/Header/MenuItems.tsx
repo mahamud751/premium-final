@@ -365,6 +365,14 @@ export const commonMenuItems: MenuItem[] = [
         path: "/salary-list",
       },
       {
+        text: "Salary Preview List",
+        path: "/salary-preview-list",
+      },
+      {
+        text: "Salary Sheet List",
+        path: "/salary-sheet-list",
+      },
+      {
         text: "Weekend List",
         path: "/weekend-list",
       },
