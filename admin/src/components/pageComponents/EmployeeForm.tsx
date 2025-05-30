@@ -49,7 +49,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
+      <Grid item xs={12} md={12}>
         <Paper elevation={2} className="bg-slate-50">
           <Grid container spacing={2} p={5}>
             <Grid item xs={12} md={6}>
