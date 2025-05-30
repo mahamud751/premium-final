@@ -62,7 +62,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const SalarySheet: React.FC = () => {
   // State for table data and filter
   const [salaryData, setSalaryData] = useState<SalaryData[]>([]);
-  const [month, setMonth] = useState<string>("2025-03-01");
+  const [month, setMonth] = useState<string>("");
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [totalRows, setTotalRows] = useState<number>(0);
@@ -136,6 +136,7 @@ const SalarySheet: React.FC = () => {
           value={month.slice(0, 7)}
           onChange={(e) => setMonth(`${e.target.value}-01`)}
           className="w-48"
+          InputLabelProps={{ shrink: true }}
         />
 
         <Button
@@ -172,7 +173,7 @@ const SalarySheet: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.map((row) => (
+            {paginatedData?.map((row) => (
               <StyledTableRow key={row.id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email || "-"}</TableCell>
