@@ -22,7 +22,7 @@ interface LedgerEntry {
 }
 
 interface LedgerRow {
-  debit: LedgerEntry;
+  debit: LedgerEntry | null;
   credit: LedgerEntry | null;
 }
 
@@ -44,8 +44,8 @@ const LedgersList: React.FC = () => {
   const { token } = useAuth();
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<string>("");
-  const [fromDate, setFromDate] = useState<string>(""); // Removed default value
-  const [toDate, setToDate] = useState<string>(""); // Removed default value
+  const [fromDate, setFromDate] = useState<string>("");
+  const [toDate, setToDate] = useState<string>("");
   const [ledgers, setLedgers] = useState<LedgerRow[]>([]);
   const [ledgerName, setLedgerName] = useState<string>("Cash");
   const [loading, setLoading] = useState<boolean>(false);
@@ -91,19 +91,8 @@ const LedgersList: React.FC = () => {
         );
         const data: LedgerData = response?.data?.data;
         setLedgerName(data.ledger || "Cash");
-        // Sort rows by debit and credit dates
-        const sortedRows = [...data.rows].sort((a, b) => {
-          const debitDateA = new Date(a.debit.date);
-          const debitDateB = new Date(b.debit.date);
-          const creditDateA = a.credit ? new Date(a.credit.date) : new Date(0);
-          const creditDateB = b.credit ? new Date(b.credit.date) : new Date(0);
-
-          return (
-            debitDateA.getTime() - debitDateB.getTime() ||
-            creditDateA.getTime() - creditDateB.getTime()
-          );
-        });
-        setLedgers(sortedRows);
+        // Set rows in original sequence without sorting
+        setLedgers(data.rows);
       } catch (error) {
         console.error("Error fetching ledgers:", error);
       } finally {
@@ -195,19 +184,19 @@ const LedgersList: React.FC = () => {
             ledgers.map((ledger, index) => (
               <TableRow key={index}>
                 <TableCell className="border border-gray-300 p-2">
-                  {ledger.debit.date}
+                  {ledger.debit?.date || ""}
                 </TableCell>
                 <TableCell className="border border-gray-300 p-2">
-                  {ledger.debit.particulars}
+                  {ledger.debit?.particulars || ""}
                 </TableCell>
                 <TableCell
                   className={`border border-gray-300 p-2 ${
-                    ledger.debit.particulars === "Balance B/D"
+                    ledger.debit?.particulars === "Balance B/D"
                       ? "bg-cyan-200"
                       : "bg-white"
                   }`}
                 >
-                  {ledger.debit.amount}
+                  {ledger.debit?.amount || ""}
                 </TableCell>
                 <TableCell className="border border-gray-300 p-2">
                   {ledger.credit?.date || ""}
@@ -241,7 +230,7 @@ const LedgersList: React.FC = () => {
               Total
             </TableCell>
             <TableCell className="border border-gray-300 p-2">
-              {ledgers.reduce((sum, l) => sum + l.debit.amount, 0)}
+              {ledgers.reduce((sum, l) => sum + (l.debit?.amount || 0), 0)}
             </TableCell>
             <TableCell colSpan={2} className="border border-gray-300 p-2" />
             <TableCell className="border border-gray-300 p-2">
