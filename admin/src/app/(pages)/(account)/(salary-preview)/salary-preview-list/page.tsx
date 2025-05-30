@@ -113,7 +113,7 @@ const SalaryPreview: React.FC = () => {
     }
   };
 
-  // Fetch salary data from API
+  // Fetch salary data from API (GET)
   const fetchSalaryData = async () => {
     try {
       const queryParams = new URLSearchParams({
@@ -130,12 +130,34 @@ const SalaryPreview: React.FC = () => {
       if (response.data.status === "success") {
         const data = response.data.data;
         setSalaryData(data);
-        setTotalRows(data.length); // Set totalRows to the length of the data array
+        setTotalRows(data.length);
       }
     } catch (error) {
       console.error("Error fetching salary data:", error);
       setSalaryData([]);
       setTotalRows(0);
+    }
+  };
+
+  // Generate salary (POST)
+  const generateSalary = async () => {
+    try {
+      const payload = {
+        salary_month: month,
+        department_id: selectedDepartment || "",
+        status: selectedStatus,
+        designation_id: selectedDesignation || "",
+        user_id: selectedEmployee || "",
+      };
+
+      const response = await api.post("/v1/admin/salary-generate", payload);
+      if (response.data.status === "success") {
+        console.log("Salary generated successfully:", response.data);
+        // Refresh the salary preview data after generating
+        await fetchSalaryData();
+      }
+    } catch (error) {
+      console.error("Error generating salary:", error);
     }
   };
 
@@ -177,8 +199,6 @@ const SalaryPreview: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Salary Preview</h1>
-
       {/* Filter Section */}
       <div className="flex flex-wrap gap-4 mb-4">
         <FormControl className="w-48">
@@ -249,10 +269,18 @@ const SalaryPreview: React.FC = () => {
 
         <Button
           variant="contained"
-          className="bg-dark-background hover:bg-dark-background-hover text-white w-[220px]"
+          className="bg-dark-background  hover:bg-dark-background text-white w-[220px]"
           onClick={fetchSalaryData}
         >
           Apply
+        </Button>
+
+        <Button
+          variant="contained"
+          className="bg-dark-background  hover:bg-dark-background text-white w-[220px]"
+          onClick={generateSalary}
+        >
+          Generate Salary Sheet
         </Button>
       </div>
 
