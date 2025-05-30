@@ -8,6 +8,7 @@ import {
   User,
 } from "@/services/types";
 import { Grid, TextField, Paper } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
 import useFetch from "@/services/hooks/UseRequest";
 import UserSelect from "../molecules/UserSelect";
 import DesignationSelect from "../molecules/DesignationSelect";
@@ -36,17 +37,13 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   const designations = responseDesignationData?.data || [];
   const departments = responseDepartmentData?.data || [];
 
-  const handleUserChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleUserChange = (event: SelectChangeEvent<string>) => {
     setSelectedUser(event.target.value as string);
   };
-  const handleDepartmentChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
+  const handleDepartmentChange = (event: SelectChangeEvent<string>) => {
     setSelectedDepartment(event.target.value as string);
   };
-  const handleDesignationChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
+  const handleDesignationChange = (event: SelectChangeEvent<string>) => {
     setSelectedDesignation(event.target.value as string);
   };
 
