@@ -80,10 +80,11 @@ const SalaryPreview: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<"Active" | "Inactive">(
     "Active"
   );
-  const [month, setMonth] = useState<string>("2025-03-01");
+  const [month, setMonth] = useState<string>("");
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [totalRows, setTotalRows] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Get token from useAuth
   const { token } = useAuth();
@@ -115,6 +116,7 @@ const SalaryPreview: React.FC = () => {
 
   // Fetch salary data from API (GET)
   const fetchSalaryData = async () => {
+    setLoading(true);
     try {
       const queryParams = new URLSearchParams({
         salary_month: month,
@@ -131,16 +133,22 @@ const SalaryPreview: React.FC = () => {
         const data = response.data.data;
         setSalaryData(data);
         setTotalRows(data.length);
+      } else {
+        setSalaryData([]);
+        setTotalRows(0);
       }
     } catch (error) {
       console.error("Error fetching salary data:", error);
       setSalaryData([]);
       setTotalRows(0);
+    } finally {
+      setLoading(false);
     }
   };
 
   // Generate salary (POST)
   const generateSalary = async () => {
+    setLoading(true);
     try {
       const payload = {
         salary_month: month,
@@ -158,25 +166,20 @@ const SalaryPreview: React.FC = () => {
       }
     } catch (error) {
       console.error("Error generating salary:", error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  // Handle Apply button click
+  const handleApply = () => {
+    fetchSalaryData();
   };
 
   // Fetch filter options on component mount
   useEffect(() => {
     fetchFilterOptions();
   }, []);
-
-  // Fetch salary data when filters change
-  useEffect(() => {
-    setPage(0); // Reset page to 0 when filters change
-    fetchSalaryData();
-  }, [
-    selectedDepartment,
-    selectedDesignation,
-    selectedEmployee,
-    selectedStatus,
-    month,
-  ]);
 
   // Handle page change
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -206,6 +209,7 @@ const SalaryPreview: React.FC = () => {
           <Select
             value={selectedDepartment}
             onChange={(e) => setSelectedDepartment(e.target.value as string)}
+            disabled={loading}
           >
             <MenuItem value="">All Department</MenuItem>
             {departments.map((dept) => (
@@ -221,6 +225,7 @@ const SalaryPreview: React.FC = () => {
           <Select
             value={selectedDesignation}
             onChange={(e) => setSelectedDesignation(e.target.value as string)}
+            disabled={loading}
           >
             <MenuItem value="">All Designation</MenuItem>
             {designations.map((desig) => (
@@ -236,6 +241,7 @@ const SalaryPreview: React.FC = () => {
           <Select
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value as string)}
+            disabled={loading}
           >
             <MenuItem value="">All Employee</MenuItem>
             {employees.map((emp) => (
@@ -253,6 +259,7 @@ const SalaryPreview: React.FC = () => {
             onChange={(e) =>
               setSelectedStatus(e.target.value as "Active" | "Inactive")
             }
+            disabled={loading}
           >
             <MenuItem value="Active">Active</MenuItem>
             <MenuItem value="Inactive">Inactive</MenuItem>
@@ -265,22 +272,25 @@ const SalaryPreview: React.FC = () => {
           value={month.slice(0, 7)}
           onChange={(e) => setMonth(`${e.target.value}-01`)}
           className="w-48"
+          disabled={loading}
         />
 
         <Button
           variant="contained"
-          className="bg-dark-background  hover:bg-dark-background text-white w-[220px]"
-          onClick={fetchSalaryData}
+          className="bg-dark-background hover:bg-dark-background text-white w-[220px]"
+          onClick={handleApply}
+          disabled={loading}
         >
-          Apply
+          {loading ? "Loading..." : "Apply"}
         </Button>
 
         <Button
           variant="contained"
-          className="bg-dark-background  hover:bg-dark-background text-white w-[220px]"
+          className="bg-dark-background hover:bg-dark-background text-white w-[220px]"
           onClick={generateSalary}
+          disabled={loading}
         >
-          Generate Salary Sheet
+          {loading ? "Loading..." : "Generate Salary Sheet"}
         </Button>
       </div>
 
@@ -305,26 +315,36 @@ const SalaryPreview: React.FC = () => {
               <StyledTableCell>Holiday</StyledTableCell>
               <StyledTableCell>Absent</StyledTableCell>
               <StyledTableCell>Salary</StyledTableCell>
+              <StyledTableCell>Payable</StyledTableCell>
               <StyledTableCell>Additional</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.map((row) => (
-              <StyledTableRow key={row.id}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.email || "-"}</TableCell>
-                <TableCell>AL00{row.id}</TableCell>
-                <TableCell>{row.department}</TableCell>
-                <TableCell>{row.designation}</TableCell>
-                <TableCell>{row.attendances.presents}</TableCell>
-                <TableCell>{row.attendances.weekends}</TableCell>
-                <TableCell>{row.attendances.leaves}</TableCell>
-                <TableCell>{row.attendances.holidays}</TableCell>
-                <TableCell>{row.attendances.absents}</TableCell>
-                <TableCell>{row.salary.toLocaleString()}</TableCell>
-                <TableCell>{row.additional_salary}</TableCell>
+            {paginatedData.length > 0 ? (
+              paginatedData.map((row) => (
+                <StyledTableRow key={row.id}>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.email || "-"}</TableCell>
+                  <TableCell>AL00{row.id}</TableCell>
+                  <TableCell>{row.department}</TableCell>
+                  <TableCell>{row.designation}</TableCell>
+                  <TableCell>{row.attendances.presents}</TableCell>
+                  <TableCell>{row.attendances.weekends}</TableCell>
+                  <TableCell>{row.attendances.leaves}</TableCell>
+                  <TableCell>{row.attendances.holidays}</TableCell>
+                  <TableCell>{row.attendances.absents}</TableCell>
+                  <TableCell>{row.salary}</TableCell>
+                  <TableCell>{row.payable_salary}</TableCell>
+                  <TableCell>{row.additional_salary}</TableCell>
+                </StyledTableRow>
+              ))
+            ) : (
+              <StyledTableRow>
+                <TableCell colSpan={13} align="center">
+                  {loading ? "Loading..." : "No data available"}
+                </TableCell>
               </StyledTableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
