@@ -92,25 +92,6 @@ const JournalList = () => {
       flex: 1,
       minWidth: 120,
     },
-
-    {
-      field: "update",
-      headerName: "Status Update",
-      flex: 1,
-      minWidth: 150,
-      renderCell: (params) => (
-        <div style={{ display: "flex", alignItems: "center", marginTop: 10 }}>
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => handleOpenStatusModal(params.row.id)}
-            endIcon={<Edit />}
-          >
-            Update Status
-          </Button>
-        </div>
-      ),
-    },
   ];
 
   return (
@@ -122,6 +103,7 @@ const JournalList = () => {
         searchField="description"
         defaultHiddenColumns={[]}
         link="journal-list"
+        isJustActionData={false}
       />
       {/* Items Modal */}
       <Modal
