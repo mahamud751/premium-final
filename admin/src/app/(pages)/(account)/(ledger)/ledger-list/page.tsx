@@ -9,8 +9,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography,
   TextField,
+  Button,
 } from "@mui/material";
 import { useAuth } from "@/services/hooks/auth";
 
@@ -44,8 +44,8 @@ const LedgersList: React.FC = () => {
   const { token } = useAuth();
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<string>("");
-  const [fromDate, setFromDate] = useState<string>("2025-01-01");
-  const [toDate, setToDate] = useState<string>("2025-01-31");
+  const [fromDate, setFromDate] = useState<string>(""); // Removed default value
+  const [toDate, setToDate] = useState<string>(""); // Removed default value
   const [ledgers, setLedgers] = useState<LedgerRow[]>([]);
   const [ledgerName, setLedgerName] = useState<string>("Cash");
   const [loading, setLoading] = useState<boolean>(false);
@@ -77,65 +77,52 @@ const LedgersList: React.FC = () => {
   }, [token]);
 
   // Fetch ledger data based on selected account and date range
-  useEffect(() => {
+  const fetchLedgers = async () => {
     if (selectedAccount && fromDate && toDate) {
-      const fetchLedgers = async () => {
-        setLoading(true);
-        try {
-          const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/ledgers?chart_of_account_id=${selectedAccount}&from_date=${fromDate}&to_date=${toDate}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/ledgers?chart_of_account_id=${selectedAccount}&from_date=${fromDate}&to_date=${toDate}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data: LedgerData = response?.data?.data;
+        setLedgerName(data.ledger || "Cash");
+        // Sort rows by debit and credit dates
+        const sortedRows = [...data.rows].sort((a, b) => {
+          const debitDateA = new Date(a.debit.date);
+          const debitDateB = new Date(b.debit.date);
+          const creditDateA = a.credit ? new Date(a.credit.date) : new Date(0);
+          const creditDateB = b.credit ? new Date(b.credit.date) : new Date(0);
+
+          return (
+            debitDateA.getTime() - debitDateB.getTime() ||
+            creditDateA.getTime() - creditDateB.getTime()
           );
-          const data: LedgerData = response?.data?.data;
-          setLedgerName(data.ledger || "Cash");
-          // Sort rows by debit and credit dates
-          const sortedRows = [...data.rows].sort((a, b) => {
-            const debitDateA = new Date(a.debit.date);
-            const debitDateB = new Date(b.debit.date);
-            const creditDateA = a.credit
-              ? new Date(a.credit.date)
-              : new Date(0);
-            const creditDateB = b.credit
-              ? new Date(b.credit.date)
-              : new Date(0);
-
-            return (
-              debitDateA.getTime() - debitDateB.getTime() ||
-              creditDateA.getTime() - creditDateB.getTime()
-            );
-          });
-          setLedgers(sortedRows);
-        } catch (error) {
-          console.error("Error fetching ledgers:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchLedgers();
+        });
+        setLedgers(sortedRows);
+      } catch (error) {
+        console.error("Error fetching ledgers:", error);
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [selectedAccount, fromDate, toDate, token]);
+  };
 
-  // Format date for display (e.g., "01-Jan-25" to "01-Jan-25")
-  // const formatDateForDisplay = (date: string): string => {
-  //   const parsedDate = new Date(date);
-  //   return parsedDate.toLocaleDateString("en-GB", {
-  //     day: "2-digit",
-  //     month: "short",
-  //     year: "2-digit",
-  //   });
-  // };
+  // Handle Apply button click
+  const handleApply = () => {
+    if (!selectedAccount || !fromDate || !toDate) {
+      alert("Please select an account and both date ranges.");
+      return;
+    }
+    fetchLedgers();
+  };
 
   return (
     <div className="container mx-auto p-4">
-      {/* <Typography variant="h5" className="mb-4 text-center font-bold">
-        {ledgerName} Ledger ({formatDateForDisplay(fromDate)} to{" "}
-        {formatDateForDisplay(toDate)})
-      </Typography> */}
-
       {/* Chart of Accounts Dropdown and Date Inputs */}
       <div className="mb-4 flex flex-col sm:flex-row gap-4 items-center">
         <Select
@@ -145,6 +132,9 @@ const LedgersList: React.FC = () => {
           className="w-full max-w-xs"
           disabled={loading}
         >
+          <MenuItem value="" disabled>
+            Select Account
+          </MenuItem>
           {accounts.map((account) => (
             <MenuItem key={account.id} value={account.id}>
               {account.name}
@@ -171,6 +161,16 @@ const LedgersList: React.FC = () => {
           className="w-full max-w-xs"
           disabled={loading}
         />
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleApply}
+          disabled={loading}
+          className="w-full max-w-xs sm:w-auto"
+        >
+          Apply
+        </Button>
       </div>
 
       {/* Ledger Table */}
