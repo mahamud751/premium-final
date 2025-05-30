@@ -739,16 +739,38 @@ export interface Discount {
   status: string;
 }
 
-export interface Employee {
+export interface EmployeeDetails {
   id: string;
   user_id: string;
-  employee: any;
   department_id: string;
   designation_id: string;
   joining_date: string;
+  resignation_date: string | null;
   bank_account_number: string;
   salary: string;
+  created_at: string;
+  updated_at: string;
+}
+export interface Employee {
+  id: string;
+  machine_user_id: string;
+  name: string;
+  email: string | null;
+  phone: string;
+  email_verified_at: string | null;
+  can_login: number;
+  user_type: string;
   status: string;
+  father_or_husband_name: string;
+  address: string;
+  nid_number: number;
+  website: string | null;
+  description: string | null;
+  image: string | null;
+  created_at: string;
+  updated_at: string;
+  role_id: number;
+  employee: EmployeeDetails;
 }
 
 export interface EmployeeApiResponse {

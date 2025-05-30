@@ -210,6 +210,7 @@ const SalaryPreview: React.FC = () => {
             value={selectedDepartment}
             onChange={(e) => setSelectedDepartment(e.target.value as string)}
             disabled={loading}
+            label="Department"
           >
             <MenuItem value="">All Department</MenuItem>
             {departments.map((dept) => (
@@ -226,6 +227,7 @@ const SalaryPreview: React.FC = () => {
             value={selectedDesignation}
             onChange={(e) => setSelectedDesignation(e.target.value as string)}
             disabled={loading}
+            label="Designation"
           >
             <MenuItem value="">All Designation</MenuItem>
             {designations.map((desig) => (
@@ -242,6 +244,7 @@ const SalaryPreview: React.FC = () => {
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value as string)}
             disabled={loading}
+            label="Employee"
           >
             <MenuItem value="">All Employee</MenuItem>
             {employees.map((emp) => (
@@ -260,6 +263,7 @@ const SalaryPreview: React.FC = () => {
               setSelectedStatus(e.target.value as "Active" | "Inactive")
             }
             disabled={loading}
+            label="Employee Status"
           >
             <MenuItem value="Active">Active</MenuItem>
             <MenuItem value="Inactive">Inactive</MenuItem>
@@ -273,6 +277,7 @@ const SalaryPreview: React.FC = () => {
           onChange={(e) => setMonth(`${e.target.value}-01`)}
           className="w-48"
           disabled={loading}
+          InputLabelProps={{ shrink: true }}
         />
 
         <Button

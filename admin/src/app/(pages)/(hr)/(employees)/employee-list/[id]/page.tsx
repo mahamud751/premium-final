@@ -4,6 +4,7 @@ import {
   BaseEditProps,
   Department,
   Designation,
+  Employee,
   EmployeeApiResponse,
   User,
 } from "@/services/types";
@@ -24,13 +25,12 @@ const EditEmployee: React.FC<BaseEditProps> = ({ params }) => {
   const [selectedDesignation, setSelectedDesignation] = useState<string>("");
   const [status, setStatus] = useState<string>("");
 
-  // Fetch projects for the ProjectSelect dropdown
+  // Fetch users, departments, and designations for dropdowns
   const {
     data: userData,
     loading: userLoading,
     error: userError,
   } = useFetch<{ data: User[] }>("admin/users");
-
   const { data: departmentData } = useFetch<{ data: Department[] }>(
     "admin/departments"
   );
@@ -38,19 +38,20 @@ const EditEmployee: React.FC<BaseEditProps> = ({ params }) => {
     "admin/designations"
   );
 
+  // Pre-fill form fields with employee data
   useEffect(() => {
     if (data?.data) {
-      setSelectedUser(data?.data?.employee?.user_id || "");
-      setSelectedDepartment(data?.data?.employee?.department_id || "");
-      setSelectedDesignation(data?.data?.employee?.designation_id || "");
-      setStatus(data.data.status);
+      setSelectedUser(data.data.employee?.user_id || "");
+      setSelectedDepartment(data.data.employee?.department_id || "");
+      setSelectedDesignation(data.data.employee?.designation_id || "");
+      setStatus(data.data.status || "");
     }
-  }, [data, userData, departmentData, designationData]);
+  }, [data]);
 
-  const resetFields = () => {};
   const handleStatusChange = (event: SelectChangeEvent<string>) => {
     setStatus(event.target.value as string);
   };
+
   const additionalFields = (
     <>
       <EmployeeForm
@@ -67,6 +68,7 @@ const EditEmployee: React.FC<BaseEditProps> = ({ params }) => {
       </Grid>
     </>
   );
+
   return (
     <LoadingError loading={loading || userLoading} error={error || userError}>
       <AddForm
@@ -74,7 +76,8 @@ const EditEmployee: React.FC<BaseEditProps> = ({ params }) => {
         id={params.id}
         additionalFields={additionalFields}
         buttonText="Edit Employee"
-        resetFields={resetFields}
+        method="PUT"
+        resetFields={() => {}}
         //@ts-ignore
         photosData={[]}
         isNoPhotoFile={true}

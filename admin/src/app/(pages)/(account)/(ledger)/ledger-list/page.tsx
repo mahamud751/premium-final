@@ -111,7 +111,7 @@ const LedgersList: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 bg-white mt-12 py-12">
       {/* Chart of Accounts Dropdown and Date Inputs */}
       <div className="mb-4 flex flex-col sm:flex-row gap-4 items-center">
         <Select
@@ -153,10 +153,9 @@ const LedgersList: React.FC = () => {
 
         <Button
           variant="contained"
-          color="primary"
           onClick={handleApply}
           disabled={loading}
-          className="w-full max-w-xs sm:w-auto"
+          className="w-full max-w-xs sm:w-auto bg-black"
         >
           Apply
         </Button>
@@ -165,12 +164,7 @@ const LedgersList: React.FC = () => {
       {/* Ledger Table */}
       <Table className="w-full border-collapse">
         <TableHead>
-          <TableRow className="bg-green-300 text-white">
-            <TableCell className="border border-gray-300 p-2" colSpan={6}>
-              {ledgerName}
-            </TableCell>
-          </TableRow>
-          <TableRow className="bg-green-400 text-white">
+          <TableRow className="bg-[#EAEFF4]  text-white">
             <TableCell className="border border-gray-300 p-2">Date</TableCell>
             <TableCell className="border border-gray-300 p-2">Dr</TableCell>
             <TableCell className="border border-gray-300 p-2">Tk</TableCell>
@@ -189,13 +183,7 @@ const LedgersList: React.FC = () => {
                 <TableCell className="border border-gray-300 p-2">
                   {ledger.debit?.particulars || ""}
                 </TableCell>
-                <TableCell
-                  className={`border border-gray-300 p-2 ${
-                    ledger.debit?.particulars === "Balance B/D"
-                      ? "bg-cyan-200"
-                      : "bg-white"
-                  }`}
-                >
+                <TableCell className={`border border-gray-300 p-2`}>
                   {ledger.debit?.amount || ""}
                 </TableCell>
                 <TableCell className="border border-gray-300 p-2">
@@ -204,13 +192,7 @@ const LedgersList: React.FC = () => {
                 <TableCell className="border border-gray-300 p-2">
                   {ledger.credit?.particulars || ""}
                 </TableCell>
-                <TableCell
-                  className={`border border-gray-300 p-2 ${
-                    ledger.credit?.particulars === "Balance C/D"
-                      ? "bg-cyan-200"
-                      : "bg-white"
-                  }`}
-                >
+                <TableCell className={`border border-gray-300 p-2`}>
                   {ledger.credit?.amount || ""}
                 </TableCell>
               </TableRow>
