@@ -33,13 +33,13 @@ const ScheduleTour = ({ product }) => {
 
     // Build request body, conditionally including product_id
     const requestBody = {
-      name: formData.name,
-      mobile: formData.phone,
-      email: formData.email,
-      details: formData.details,
+      name: formData?.name,
+      mobile: formData?.phone,
+      email: formData?.email,
+      details: formData?.details,
     };
-    if (formData.product_id) {
-      requestBody.product_id = formData.product_id;
+    if (formData?.product_id) {
+      requestBody.product_id = formData?.product_id;
     }
 
     try {
@@ -87,7 +87,7 @@ const ScheduleTour = ({ product }) => {
                     className="form-control"
                     placeholder="Name"
                     name="name"
-                    value={formData.name}
+                    value={formData?.name}
                     onChange={handleChange}
                     required
                   />
@@ -101,7 +101,7 @@ const ScheduleTour = ({ product }) => {
                     className="form-control"
                     placeholder="Phone"
                     name="phone"
-                    value={formData.phone}
+                    value={formData?.phone}
                     onChange={handleChange}
                     required
                   />
@@ -115,7 +115,7 @@ const ScheduleTour = ({ product }) => {
                     className="form-control"
                     placeholder="Email"
                     name="email"
-                    value={formData.email}
+                    value={formData?.email}
                     onChange={handleChange}
                     required
                   />
@@ -129,7 +129,7 @@ const ScheduleTour = ({ product }) => {
                     rows={4}
                     placeholder="Enter Your Messages"
                     name="details"
-                    value={formData.details}
+                    value={formData?.details}
                     onChange={handleChange}
                     className="p-2"
                   />

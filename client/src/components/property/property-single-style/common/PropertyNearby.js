@@ -60,7 +60,7 @@ const PropertyNearby = () => {
       <div className="navtab-style1">
         <nav>
           <div className="nav nav-tabs mb20" id="nav-tab2" role="tablist">
-            {tabsData.map((tab, index) => (
+            {tabsData?.map((tab, index) => (
               <button
                 key={index}
                 className={`nav-link fw600 ${index === 0 ? "active" : ""}`}
@@ -80,7 +80,7 @@ const PropertyNearby = () => {
         {/* End nav tabs */}
 
         <div className="tab-content" id="nav-tabContent">
-          {tabsData.map((tab, index) => (
+          {tabsData?.map((tab, index) => (
             <div
               key={index}
               className={`tab-pane fade fz15 ${
@@ -90,25 +90,25 @@ const PropertyNearby = () => {
               role="tabpanel"
               aria-labelledby={`nav-item${index + 1}-tab`}
             >
-              {tab.details.map((detail, detailIndex) => (
+              {tab?.details?.map((detail, detailIndex) => (
                 <div
                   key={detailIndex}
                   className="nearby d-sm-flex align-items-center mb20"
                 >
                   <div className="rating dark-color mr15 ms-1 mt10-xs mb10-xs">
-                    <span className="fw600 fz14">{detail.rating}</span>
+                    <span className="fw600 fz14">{detail?.rating}</span>
                     <span className="text fz14">/10</span>
                   </div>
                   <div className="details">
                     <p className="dark-color fw600 mb-0">
                       {tab.title === "Education"
-                        ? detail.schoolName
-                        : detail.facilityName || detail.transportationName}
+                        ? detail?.schoolName
+                        : detail?.facilityName || detail?.transportationName}
                     </p>
                     <p className="text mb-0">
                       {tab.title === "Education"
-                        ? `Grades: ${detail.grades} Distance: ${detail.distance}`
-                        : `Distance: ${detail.distance}`}
+                        ? `Grades: ${detail?.grades} Distance: ${detail?.distance}`
+                        : `Distance: ${detail?.distance}`}
                     </p>
                     <div className="blog-single-review">
                       <ul className="mb0 ps-0">

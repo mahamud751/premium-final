@@ -22,7 +22,7 @@ const PropertyAddress = () => {
 
   return (
     <>
-      {addresses.map((address, index) => (
+      {addresses?.map((address, index) => (
         <div
           key={index}
           className={`col-md-6 col-xl-4 ${index === 1 ? "offset-xl-2" : ""}`}
@@ -34,9 +34,9 @@ const PropertyAddress = () => {
               <p className="fw600 mb-0 ff-heading dark-color">State/county</p>
             </div>
             <div className="pd-list">
-              <p className="text mb10">{address.address}</p>
-              <p className="text mb10">{address.city}</p>
-              <p className="text mb-0">{address.state}</p>
+              <p className="text mb10">{address?.address}</p>
+              <p className="text mb10">{address?.city}</p>
+              <p className="text mb-0">{address?.state}</p>
             </div>
           </div>
         </div>

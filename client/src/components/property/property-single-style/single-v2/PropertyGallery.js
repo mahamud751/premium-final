@@ -49,15 +49,15 @@ const PropertyGallery = ({id}) => {
 
         <div className="col-sm-3">
           <div className="row">
-            {images.map((image, index) => (
+            {images?.map((image, index) => (
               <div className="col-sm-12 ps-lg-0" key={index}>
                 <div className="sp-img-content">
                   <div
                     className={`popup-img preview-img-${index + 2} sp-img mb10`}
                   >
                     <Item
-                      original={image.src}
-                      thumbnail={image.src}
+                      original={image?.src}
+                      thumbnail={image?.src}
                       width={270}
                       height={250}
                     >
@@ -69,8 +69,8 @@ const PropertyGallery = ({id}) => {
                           ref={ref}
                           onClick={open}
                           role="button"
-                          src={image.src}
-                          alt={image.alt}
+                          src={image?.src}
+                          alt={image?.alt}
                         />
                       )}
                     </Item>

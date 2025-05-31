@@ -19,33 +19,33 @@ const PropertyDetails = ({ product }) => {
     [
       {
         label: "Property ID",
-        value: data.id,
+        value: data?.id,
         icon: "fas fa-id-badge",
         color: "text-blue-500",
       },
       {
         label: "Price",
-        value: data.total_price
-          ? `${data.total_price.toLocaleString()} ৳`
+        value: data?.total_price
+          ? `${data?.total_price.toLocaleString()} ৳`
           : "N/A",
         icon: "fas fa-tag",
         color: "text-green-500",
       },
       {
         label: "Property Size",
-        value: data.flat_size ? `${data.flat_size} Sq Ft` : "N/A",
+        value: data?.flat_size ? `${data?.flat_size} Sq Ft` : "N/A",
         icon: "fas fa-ruler-combined",
         color: "text-yellow-500",
       },
       {
         label: "Bathrooms",
-        value: data.bathroom,
+        value: data?.bathroom,
         icon: "fas fa-bath",
         color: "text-pink-500",
       },
       {
         label: "Bedrooms",
-        value: data.bedroom,
+        value: data?.bedroom,
         icon: "fas fa-bed",
         color: "text-purple-500",
       },
@@ -53,7 +53,7 @@ const PropertyDetails = ({ product }) => {
     [
       {
         label: "Garage",
-        value: data.car_parking ? "Yes" : "No",
+        value: data?.car_parking ? "Yes" : "No",
         icon: "fas fa-car",
         color: "text-teal-500",
       },
@@ -65,21 +65,21 @@ const PropertyDetails = ({ product }) => {
       },
       {
         label: "Year Built",
-        value: data.created_at
-          ? new Date(data.created_at).getFullYear()
+        value: data?.created_at
+          ? new Date(data?.created_at).getFullYear()
           : "N/A",
         icon: "fas fa-calendar-alt",
         color: "text-red-500",
       },
       {
         label: "Property Type",
-        value: data.flat_type || "N/A",
+        value: data?.flat_type || "N/A",
         icon: "fas fa-building",
         color: "text-cyan-500",
       },
       {
         label: "Property Status",
-        value: data.status || "N/A",
+        value: data?.status || "N/A",
         icon: "fas fa-info-circle",
         color: "text-indigo-500",
       },

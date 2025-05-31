@@ -27,10 +27,10 @@ const MortgageCalculator = () => {
         {/* End chart */}
 
         <ul className="list-result-calculator d-md-flex flex-wrap justify-content-between bdrb1 mt20 ps-0 pb15 mb-0">
-          {resultItems.map((item, index) => (
+          {resultItems?.map((item, index) => (
             <li key={index} className="d-sm-flex align-items-center">
-              <span className="name-result text">{item.label}</span>
-              <span className="principal-interest-val fw600">{item.value}</span>
+              <span className="name-result text">{item?.label}</span>
+              <span className="principal-interest-val fw600">{item?.value}</span>
             </li>
           ))}
         </ul>

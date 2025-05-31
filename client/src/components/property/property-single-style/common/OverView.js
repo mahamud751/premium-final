@@ -55,18 +55,18 @@ const OverView = ({ product }) => {
 
   return (
     <div className="flex flex-wrap -mx-4 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-      {overviewData.map((item, index) => (
+      {overviewData?.map((item, index) => (
         <div
           key={index}
           className={`w-full sm:w-1/2 lg:w-1/3 px-4 ${
-            item.xs ? "mb-6 sm:mb-6" : "mb-6"
+            item?.xs ? "mb-6 sm:mb-6" : "mb-6"
           }`}
         >
           <div className="flex items-center p-4 bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-200">
-            <i className={`${item.icon} ${item.color} text-xl mr-3`}></i>
+            <i className={`${item?.icon} ${item?.color} text-xl mr-3`}></i>
             <div>
-              <h6 className="font-semibold text-gray-800 mb-1">{item.label}</h6>
-              <p className="text-gray-600 text-sm">{item.value}</p>
+              <h6 className="font-semibold text-gray-800 mb-1">{item?.label}</h6>
+              <p className="text-gray-600 text-sm">{item?.value}</p>
             </div>
           </div>
         </div>

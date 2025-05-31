@@ -9,7 +9,7 @@ const PropertyFeaturesAminites = () => {
 
   return (
     <>
-      {featuresAmenitiesData.map((row, rowIndex) => (
+      {featuresAmenitiesData?.map((row, rowIndex) => (
         <div key={rowIndex} className="col-sm-6 col-md-4">
           <div className="pd-list">
             {row.map((item, index) => (

@@ -28,7 +28,7 @@ const GalleryBox = ({id}) => {
         initialSlide={1}
         loop={true}
       >
-        {imageUrls.map((imageUrl, index) => (
+        {imageUrls?.map((imageUrl, index) => (
           <SwiperSlide key={index}>
             <div className="item">
               <Image
