@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import DataTable from "@/components/templates/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
 import StatusButton from "@/components/atoms/StatusButton";
-import IconButton from "@mui/material/IconButton";
-import ApprovalIcon from "@mui/icons-material/CheckCircleOutline";
+import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -17,65 +16,83 @@ const LeaveList = () => {
   const { token } = useAuth();
   const [open, setOpen] = useState(false);
   const [selectedLeaveId, setSelectedLeaveId] = useState<number | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<
+    "Approved" | "Rejected" | ""
+  >("");
+  const [refreshKey, setRefreshKey] = useState(0); // For table refresh
 
-  const handleOpenModal = (id: number) => {
+  const handleOpenModal = (id: number, status: "Approved" | "Rejected") => {
     setSelectedLeaveId(id);
+    setSelectedStatus(status);
     setOpen(true);
   };
 
   const handleCloseModal = () => {
     setOpen(false);
     setSelectedLeaveId(null);
+    setSelectedStatus("");
   };
 
-  const handleApprove = async () => {
-    if (selectedLeaveId) {
+  const handleStatusChange = async () => {
+    if (selectedLeaveId && selectedStatus) {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/leaves-approval/${selectedLeaveId}`,
           {
             method: "POST",
-
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ status: "Approved" }),
+            body: JSON.stringify({ status: selectedStatus }),
           }
         );
         if (response.ok) {
-          console.log("Leave approved successfully");
-          // Optionally, refresh the DataTable here
+          console.log(`Leave ${selectedStatus.toLowerCase()} successfully`);
+          setRefreshKey((prev) => prev + 1); // Trigger table refresh
         } else {
-          console.error("Failed to approve leave");
+          console.error(`Failed to ${selectedStatus.toLowerCase()} leave`);
         }
       } catch (error) {
-        console.error("Error approving leave:", error);
+        console.error(`Error ${selectedStatus.toLowerCase()} leave:`, error);
       }
     }
     handleCloseModal();
   };
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 160 },
-    { field: "reason", headerName: "Reason", flex: 1, minWidth: 160 },
-    { field: "from_date", headerName: "From Date", flex: 1, minWidth: 160 },
-    { field: "to_date", headerName: "To Date", flex: 1, minWidth: 160 },
+    { field: "id", headerName: "ID", flex: 1, minWidth: 100 },
+    { field: "reason", headerName: "Reason", flex: 1, minWidth: 200 },
+    { field: "from_date", headerName: "From Date", flex: 1, minWidth: 150 },
+    { field: "to_date", headerName: "To Date", flex: 1, minWidth: 150 },
     {
       field: "status",
       headerName: "Status",
       flex: 1,
-      minWidth: 160,
+      minWidth: 200,
       renderCell: (params) => (
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <StatusButton status={params.value} />
-          <IconButton
-            color="primary"
-            onClick={() => handleOpenModal(params.row.id)}
-            title="Approve Leave"
-          >
-            <ApprovalIcon />
-          </IconButton>
+          {params.value === "Pending" && (
+            <Select
+              value=""
+              onChange={(event: SelectChangeEvent<string>) =>
+                handleOpenModal(
+                  params.row.id,
+                  event.target.value as "Approved" | "Rejected"
+                )
+              }
+              displayEmpty
+              size="small"
+              sx={{ minWidth: 120 }}
+            >
+              <MenuItem value="" disabled>
+                Update Status
+              </MenuItem>
+              <MenuItem value="Approved">Approve</MenuItem>
+              <MenuItem value="Rejected">Reject</MenuItem>
+            </Select>
+          )}
         </div>
       ),
     },
@@ -87,26 +104,35 @@ const LeaveList = () => {
         fetchUrl={`${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/leaves`}
         deleteUrl={`${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/leaves`}
         columns={columns}
-        searchField="name"
+        searchField="reason" // Changed to 'reason' since 'name' may not exist
         link="leave-list"
+        isJustActionData={false}
+        key={refreshKey} // Refresh table when key changes
       />
       <Dialog
         open={open}
         onClose={handleCloseModal}
-        aria-labelledby="approve-leave-dialog-title"
+        aria-labelledby="leave-status-dialog-title"
       >
-        <DialogTitle id="approve-leave-dialog-title">Approve Leave</DialogTitle>
+        <DialogTitle id="leave-status-dialog-title">
+          {selectedStatus} Leave
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to approve this leave request?
+            Are you sure you want to {selectedStatus.toLowerCase()} this leave
+            request?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseModal} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleApprove} color="primary" variant="contained">
-            Approve
+          <Button
+            onClick={handleStatusChange}
+            color="primary"
+            variant="contained"
+          >
+            {selectedStatus}
           </Button>
         </DialogActions>
       </Dialog>

@@ -185,10 +185,7 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
               `details[${index}][chart_of_account_id]`,
               entry.chart_of_account_id
             );
-            formData.append(
-              `details[${index}][entry_type]`,
-              entry.entry_type.toString()
-            );
+            formData.append(`details[${index}][entry_type]`, entry.entry_type);
             formData.append(`details[${index}][amount]`, entry.amount);
           });
         } else if (key === "items") {

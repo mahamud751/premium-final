@@ -21,19 +21,19 @@ import { Edit } from "@mui/icons-material";
 
 const JournalList = () => {
   const { token } = useAuth();
-  const [openItemsModal, setOpenItemsModal] = useState(false);
+  const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [openStatusModal, setOpenStatusModal] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [selectedDetails, setSelectedDetails] = useState<any[]>([]);
   const [selectedRowId, setSelectedRowId] = useState<null | string>(null);
 
-  const handleOpenItemsModal = (items: any[]) => {
-    setSelectedItems(items);
-    setOpenItemsModal(true);
+  const handleOpenDetailsModal = (details: any[]) => {
+    setSelectedDetails(details);
+    setOpenDetailsModal(true);
   };
 
-  const handleCloseItemsModal = () => {
-    setOpenItemsModal(false);
-    setSelectedItems([]);
+  const handleCloseDetailsModal = () => {
+    setOpenDetailsModal(false);
+    setSelectedDetails([]);
   };
 
   const handleOpenStatusModal = (rowId: string) => {
@@ -80,17 +80,6 @@ const JournalList = () => {
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1, minWidth: 160 },
     {
-      field: "project_id",
-      headerName: "Project ID",
-      flex: 1,
-      minWidth: 120,
-      renderCell: (params) => (
-        <div>
-          <p>{params.row.project_id}</p>
-        </div>
-      ),
-    },
-    {
       field: "reference_number",
       headerName: "Reference Number",
       flex: 1,
@@ -103,54 +92,21 @@ const JournalList = () => {
       flex: 1,
       minWidth: 120,
     },
-
     {
-      field: "items",
-      headerName: "Items",
+      field: "details",
+      headerName: "Details",
       flex: 1,
-      minWidth: 150,
+      minWidth: 200,
       renderCell: (params) => (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            marginTop: 10,
-          }}
-        >
-          {params.row.items && params.row.items.length > 0 && (
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => handleOpenItemsModal(params.row.items)}
-            >
-              Items Details
-            </Button>
-          )}
-        </div>
-      ),
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      flex: 1,
-      minWidth: 160,
-      renderCell: (params) => <StatusButton status={params.value} />,
-    },
-    {
-      field: "update",
-      headerName: "Status Update",
-      flex: 1,
-      minWidth: 150,
-      renderCell: (params) => (
-        <div style={{ display: "flex", alignItems: "center", marginTop: 10 }}>
+        <div className="flex gap-2">
           <Button
-            variant="contained"
+            variant="outlined"
             size="small"
-            onClick={() => handleOpenStatusModal(params.row.id)}
-            endIcon={<Edit />}
+            onClick={() =>
+              handleOpenDetailsModal(params.row.journal_entry_details)
+            }
           >
-            Update Status
+            View Details
           </Button>
         </div>
       ),
@@ -165,14 +121,15 @@ const JournalList = () => {
         columns={columns}
         searchField="description"
         defaultHiddenColumns={[]}
-        link="/journal-list"
+        link="journal-list"
+        isJustActionData={false}
       />
-      {/* Items Modal */}
+      {/* Journal Entry Details Modal */}
       <Modal
-        open={openItemsModal}
-        onClose={handleCloseItemsModal}
-        aria-labelledby="items-modal-title"
-        aria-describedby="items-modal-description"
+        open={openDetailsModal}
+        onClose={handleCloseDetailsModal}
+        aria-labelledby="details-modal-title"
+        aria-describedby="details-modal-description"
       >
         <Box
           sx={{
@@ -188,38 +145,41 @@ const JournalList = () => {
           }}
         >
           <Typography
-            id="items-modal-title"
+            id="details-modal-title"
             variant="h6"
             component="h2"
             gutterBottom
           >
-            All Items
+            Journal Entry Details
           </Typography>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }} aria-label="items table">
+            <Table
+              sx={{ minWidth: 500 }}
+              aria-label="journal entry details table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell>ID</TableCell>
-                  <TableCell>Description</TableCell>
-                  <TableCell align="right">Quantity</TableCell>
-                  <TableCell align="right">Unit Price</TableCell>
-                  <TableCell align="right">Total Price</TableCell>
+                  <TableCell>Journal Entry ID</TableCell>
+                  <TableCell>Chart of Account ID</TableCell>
+                  <TableCell>Entry Type</TableCell>
+                  <TableCell align="right">Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {selectedItems.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell>{item.id}</TableCell>
-                    <TableCell>{item.description}</TableCell>
-                    <TableCell align="right">{item.qty}</TableCell>
-                    <TableCell align="right">{item.unit_price}</TableCell>
-                    <TableCell align="right">{item.total_price}</TableCell>
+                {selectedDetails.map((detail) => (
+                  <TableRow key={detail.id}>
+                    <TableCell>{detail.id}</TableCell>
+                    <TableCell>{detail.journal_entry_id}</TableCell>
+                    <TableCell>{detail.chart_of_account_id}</TableCell>
+                    <TableCell>{detail.entry_type}</TableCell>
+                    <TableCell align="right">{detail.amount}</TableCell>
                   </TableRow>
                 ))}
-                {selectedItems.length === 0 && (
+                {selectedDetails.length === 0 && (
                   <TableRow>
                     <TableCell colSpan={5} align="center">
-                      No items available
+                      No details available
                     </TableCell>
                   </TableRow>
                 )}
@@ -228,7 +188,7 @@ const JournalList = () => {
           </TableContainer>
           <Button
             variant="contained"
-            onClick={handleCloseItemsModal}
+            onClick={handleCloseDetailsModal}
             sx={{ mt: 2, float: "right" }}
           >
             Close

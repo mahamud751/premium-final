@@ -361,13 +361,13 @@ const DataTable: React.FC<DataTableProps> = ({
                     <Edit color="action" className="mx-2" />
                   </Link>
                 )}
-                {isJustDeleteData && user?.role !== "rider" && (
+                {/* {isJustDeleteData && user?.role !== "rider" && (
                   <Delete
                     color="error"
                     onClick={() => handleDelete(params.id.toString())}
                     className="cursor-pointer"
                   />
-                )}
+                )} */}
               </div>
             ),
           },

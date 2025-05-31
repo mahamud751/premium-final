@@ -1,14 +1,6 @@
 // RequisitionForm.tsx
 import React, { useEffect } from "react";
-import {
-  Journal,
-  JournalFormProps,
-  Project,
-  Requisition,
-  RequisitionFormProps,
-  RequisitionItem,
-  Unit,
-} from "@/services/types";
+import { Journal, JournalFormProps, Unit } from "@/services/types";
 import {
   Grid,
   TextField,
@@ -20,8 +12,6 @@ import {
   MenuItem,
 } from "@mui/material";
 import useFetch from "@/services/hooks/UseRequest";
-import ProjectSelect from "../molecules/ProjectSelect";
-
 const JournalForm: React.FC<JournalFormProps> = ({
   journal,
   onJournalChange,
@@ -81,6 +71,7 @@ const JournalForm: React.FC<JournalFormProps> = ({
     updatedItems.splice(index, 1);
     handleChange("details", updatedItems);
   };
+  console.log("Form Data:", formData);
 
   return (
     <Grid container spacing={2}>
