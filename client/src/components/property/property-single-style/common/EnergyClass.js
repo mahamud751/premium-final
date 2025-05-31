@@ -28,10 +28,10 @@ const EnergyClass = () => {
   return (
     <>
       <div className="col-sm-12">
-        {energyMetrics.map((metric, index) => (
+        {energyMetrics?.map((metric, index) => (
           <div className="pd-list d-flex justify-content-between" key={index}>
-            <p className="text mb10">{metric.label}</p>
-            <p>{metric.value}</p>
+            <p className="text mb10">{metric?.label}</p>
+            <p>{metric?.value}</p>
           </div>
         ))}
       </div>

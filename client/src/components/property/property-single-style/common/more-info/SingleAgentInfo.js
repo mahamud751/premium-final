@@ -21,9 +21,9 @@ const SingleAgentInfo = () => {
         />
       </div>
       <div className="single-contant ml30 ml0-xs">
-        <h6 className="title mb-1">{agentData.name}</h6>
+        <h6 className="title mb-1">{agentData?.name}</h6>
         <div className="agent-meta mb10 d-md-flex align-items-center">
-          {agentData.phoneNumbers.map((phoneNumber, index) => (
+          {agentData?.phoneNumbers.map((phoneNumber, index) => (
             <a key={index} className="text fz15 pe-2 bdrr1" href="#">
               <i className="flaticon-call pe-1 ps-1" />
               {phoneNumber}
@@ -35,7 +35,7 @@ const SingleAgentInfo = () => {
           </a>
         </div>
         <div className="agent-social">
-          {agentData.socialMedia.map((social, index) => (
+          {agentData?.socialMedia.map((social, index) => (
             <a key={index} className="mr20" href="#">
               <i className={`fab fa-${social}`} />
             </a>
