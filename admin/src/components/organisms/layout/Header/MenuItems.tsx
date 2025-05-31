@@ -373,6 +373,11 @@ export const commonMenuItems: MenuItem[] = [
         path: "/salary-sheet-list",
       },
       {
+        text: "Attendence List",
+        path: "/attendence-list",
+      },
+
+      {
         text: "Holiday List",
         path: "/holiday-list",
       },
