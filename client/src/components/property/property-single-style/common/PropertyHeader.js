@@ -71,7 +71,7 @@ const PropertyHeader = ({ product }) => {
                 <span className="flaticon-printer" />
               </a>
             </div>
-            <h3 className="price mb-0">৳{product?.total_price}/Aprox</h3>
+            <h3 className="price mb-0">৳{product?.total_price}/PP</h3>
           </div>
         </div>
       </div>

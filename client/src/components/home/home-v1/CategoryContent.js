@@ -119,7 +119,7 @@ export default function CategoryContent({
               </span>
               <span className="text-gray-600">
                 {projectDetails?.total_share
-                  ? `${projectDetails?.total_share} sqft`
+                  ? `${projectDetails?.total_share}`
                   : "N/A"}
               </span>
             </div>
@@ -130,7 +130,7 @@ export default function CategoryContent({
               </span>
               <span className="text-gray-600">
                 {projectDetails?.unit_per_floor
-                  ? `${projectDetails?.unit_per_floor} sqft`
+                  ? `${projectDetails?.unit_per_floor}`
                   : "N/A"}
               </span>
             </div>
