@@ -88,8 +88,9 @@ const OrderForm: React.FC<OrderFormProps> = ({
       setFormData(order);
       setSelectedProject(order.project_id);
       setSelectedProduct(order.product_id);
+      setSelectedUser(order.user_id);
     }
-  }, [order, setSelectedProject, setSelectedProduct]);
+  }, [order, setSelectedProject, setSelectedProduct, setSelectedUser]);
 
   const handleChange = (
     field: keyof OrderData,
@@ -99,23 +100,52 @@ const OrderForm: React.FC<OrderFormProps> = ({
     setFormData(updatedFormData);
     onOrderChange(updatedFormData);
   };
+
   const handleProjectChange = (event: { target: { value: any } }) => {
     const selectedProjectId = event.target.value;
     setSelectedProject(selectedProjectId);
+    setFormData((prev) => ({
+      ...prev,
+      project_id: selectedProjectId,
+    }));
+    onOrderChange({
+      ...formData,
+      project_id: selectedProjectId,
+    });
   };
+
   const handleProductChange = (event: { target: { value: any } }) => {
     const selectedProductId = event.target.value;
     setSelectedProduct(selectedProductId);
-  };
-  const handleUserChange = (event: { target: { value: any } }) => {
-    const selectedUserId = event.target.value;
-    setSelectedUser(selectedUserId);
+    setFormData((prev) => ({
+      ...prev,
+      product_id: selectedProductId,
+    }));
+    onOrderChange({
+      ...formData,
+      product_id: selectedProductId,
+    });
   };
 
-  if (projectLoading || productLoading) return <p>Loading...</p>;
+  const handleUserChange = (
+    event: React.SyntheticEvent,
+    value: User | null
+  ) => {
+    const selectedUserId = value?.id || "";
+    setSelectedUser(selectedUserId);
+    setFormData((prev) => ({
+      ...prev,
+      user_id: selectedUserId,
+    }));
+    onOrderChange({
+      ...formData,
+      user_id: selectedUserId,
+    });
+  };
+
+  if (projectLoading || productLoading || userLoading) return <p>Loading...</p>;
   if (projectError) return <p>Error: {projectError?.message}</p>;
   if (productError) return <p>Error: {productError?.message}</p>;
-  if (userLoading) return <p>Loading...</p>;
   if (userError) return <p>Error: {userError?.message}</p>;
 
   return (

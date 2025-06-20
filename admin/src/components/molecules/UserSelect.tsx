@@ -1,42 +1,76 @@
-import React from "react";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Autocomplete, TextField, CircularProgress } from "@mui/material";
 import { User } from "@/services/types";
+import useFetch from "@/services/hooks/UseRequest";
 
 interface UserSelectProps {
   users: User[];
   selectedUser: string;
-  onUserChange: (event: SelectChangeEvent<string>) => void;
+  onUserChange: (event: React.SyntheticEvent, value: User | null) => void;
 }
 
 const UserSelect: React.FC<UserSelectProps> = ({
-  users,
+  users: initialUsers,
   selectedUser,
   onUserChange,
 }) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [open, setOpen] = useState(false);
+
+  // Fetch users based on search term
+  const {
+    data: userData,
+    loading: userLoading,
+    error: userError,
+  } = useFetch<{ data: User[] }>(
+    searchTerm
+      ? `admin/users?_search=${encodeURIComponent(searchTerm)}`
+      : "admin/users"
+  );
+
+  const users = userData?.data || initialUsers || [];
+
+  // Find the selected user object based on selectedUser ID
+  const selectedUserObj =
+    users.find((user) => user.id === selectedUser) || null;
+
+  // Handle input change for search
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
-    <FormControl fullWidth>
-      <InputLabel id="user-select-label">User</InputLabel>
-      <Select
-        labelId="user-select-label"
-        id="user-select"
-        value={selectedUser}
-        label="User"
-        onChange={onUserChange}
-        name="user_id"
-      >
-        {users?.map((user) => (
-          <MenuItem key={user?.id} value={user?.id}>
-            {user.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <Autocomplete
+      id="user-select"
+      open={open}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
+      options={users}
+      getOptionLabel={(option) => option.name || ""}
+      value={selectedUserObj}
+      onChange={onUserChange}
+      loading={userLoading}
+      isOptionEqualToValue={(option, value) => option.id === value?.id}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="User"
+          variant="outlined"
+          onChange={handleInputChange}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <>
+                {userLoading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : null}
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
+        />
+      )}
+    />
   );
 };
 

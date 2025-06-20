@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  AdditionalSalary,
-  AdditionalSalaryFormProps,
-  User,
-} from "@/services/types";
+import { AdditionalSalaryFormProps, User } from "@/services/types";
 import { Grid, TextField } from "@mui/material";
-import UseFetch from "@/services/hooks/UseRequest";
+import useFetch from "@/services/hooks/UseRequest"; // Note: Corrected casing to match import
 import UserSelect from "../molecules/UserSelect";
 
 const AdditionalSalaryForm: React.FC<AdditionalSalaryFormProps> = ({
@@ -13,15 +9,29 @@ const AdditionalSalaryForm: React.FC<AdditionalSalaryFormProps> = ({
   selectUser,
   setSelectUser,
 }) => {
-  const { data: userData } = UseFetch<{ data: User[] }>("admin/users");
+  const {
+    data: userData,
+    loading: userLoading,
+    error: userError,
+  } = useFetch<{
+    data: User[];
+  }>("admin/users");
 
   const users = userData?.data || [];
-  const handleUserChange = (event: { target: { value: any } }) => {
-    const selectedUserId = event.target.value;
+
+  const handleUserChange = (
+    event: React.SyntheticEvent,
+    value: User | null
+  ) => {
+    const selectedUserId = value?.id || "";
     setSelectUser(selectedUserId);
   };
+
+  if (userLoading) return <p>Loading...</p>;
+  if (userError) return <p>Error: {userError?.message}</p>;
+
   return (
-    <>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={12}>
         <UserSelect
           users={users}
@@ -53,7 +63,7 @@ const AdditionalSalaryForm: React.FC<AdditionalSalaryFormProps> = ({
       </Grid>
       <Grid item xs={12} md={4}>
         <TextField
-          id="outlined-basic"
+          id="date"
           label="Date"
           name="date"
           type="date"
@@ -62,7 +72,7 @@ const AdditionalSalaryForm: React.FC<AdditionalSalaryFormProps> = ({
           InputLabelProps={{ shrink: true }}
         />
       </Grid>
-    </>
+    </Grid>
   );
 };
 

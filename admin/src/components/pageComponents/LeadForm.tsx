@@ -65,11 +65,13 @@ const LeadForm: React.FC<LeedFormProps> = ({
     setSelectedProject(selectedProjectId);
   };
 
-  const handleUserChange = (event: { target: { value: any } }) => {
-    const selectedUserId = event.target.value;
+  const handleUserChange = (
+    event: React.SyntheticEvent,
+    value: User | null
+  ) => {
+    const selectedUserId = value?.id || "";
     setSelectedUser(selectedUserId);
   };
-
   const handleDetailChange = (index: number, value: number) => {
     const updatedDetails = [...details];
     updatedDetails[index] = { ...updatedDetails[index], amount: value };
