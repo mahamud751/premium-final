@@ -250,7 +250,6 @@ const AddForm = <T extends { [key: string]: Photo[] }>({
         }
       });
 
-      // Handle documents (new uploads and deletions)
       if (additionalData?.deleted_documents?.length ?? 0 > 0) {
         additionalData?.deleted_documents?.forEach(
           (url: string, index: number) => {
