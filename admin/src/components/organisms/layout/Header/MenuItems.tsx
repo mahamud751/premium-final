@@ -70,6 +70,21 @@ export const commonMenuItems: MenuItem[] = [
     ],
   },
   {
+    text: "Permissions",
+    icon: <Group className="text-teal-600" />,
+    path: "/permissions",
+    submenus: [
+      {
+        text: "Add Permission",
+        path: "/add-permission",
+      },
+      {
+        text: "Permission List",
+        path: "/permission-list",
+      },
+    ],
+  },
+  {
     text: "Vendor",
     icon: <Store className="text-orange-600" />,
     path: "/vendors",

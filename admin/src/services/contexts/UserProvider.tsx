@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
 interface Permission {
-  id: string;
+  id?: string; // Optional, as the provided permissions are just strings
   name: string;
 }
 
@@ -28,6 +28,7 @@ export interface User {
   token?: string;
   created_at?: string;
   updated_at?: string;
+  permissions?: Permission[]; // Add permissions to User interface
 }
 
 export interface AuthContextType {
@@ -74,6 +75,14 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
     return null;
   });
 
+  const [permissions, setPermissions] = useState<Permission[] | null>(() => {
+    if (typeof window !== "undefined") {
+      const storedPermissions = localStorage.getItem("permissions");
+      return storedPermissions ? JSON.parse(storedPermissions) : null;
+    }
+    return null;
+  });
+
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -88,8 +97,13 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
       } else {
         localStorage.removeItem("token");
       }
+      if (permissions) {
+        localStorage.setItem("permissions", JSON.stringify(permissions));
+      } else {
+        localStorage.removeItem("permissions");
+      }
     }
-  }, [user, token]);
+  }, [user, token, permissions]);
 
   const loginUser = async (email: string, password: string) => {
     setLoading(true);
@@ -114,13 +128,21 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
           token: data.data.user.token,
           created_at: data.data.user.created_at,
           updated_at: data.data.user.updated_at,
+          permissions: data.data.permissions.map((perm: string) => ({
+            name: perm,
+          })), // Map permissions to Permission objects
         };
 
         setUser(userData);
         setToken(data.data.token);
+        setPermissions(userData.permissions || []);
 
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem(
+          "permissions",
+          JSON.stringify(userData.permissions || [])
+        );
 
         MySwal.fire({
           icon: "success",
@@ -159,7 +181,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURLHOME}/register`, // Updated to match your endpoint
+        `${process.env.NEXT_PUBLIC_BASEURLHOME}/register`,
         {
           name,
           email,
@@ -171,7 +193,6 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
         }
       );
 
-      // Handle both 200 and 201 status codes for success
       if (response.status === 200 || response.status === 201) {
         const { data } = response;
 
@@ -181,16 +202,23 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
           email: data.data.user.email,
           created_at: data.data.user.created_at,
           updated_at: data.data.user.updated_at,
-          // user_type and status might not be returned by register API, so make them optional
           user_type: data.data.user.user_type || undefined,
           status: data.data.user.status || undefined,
+          permissions: data.data.permissions
+            ? data.data.permissions.map((perm: string) => ({ name: perm }))
+            : undefined, // Handle permissions if returned by register API
         };
 
         setUser(userData);
         setToken(data.data.token);
+        setPermissions(userData.permissions || []);
 
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem(
+          "permissions",
+          JSON.stringify(userData.permissions || [])
+        );
 
         MySwal.fire({
           icon: "success",
@@ -220,8 +248,10 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const logoutUser = () => {
     setUser(null);
     setToken(null);
+    setPermissions(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("permissions");
     router.push("/");
   };
 

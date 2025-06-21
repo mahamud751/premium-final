@@ -15,11 +15,14 @@ import {
 } from "@mui/material";
 import { User } from "@/services/types";
 import Swal from "sweetalert2";
+import { useAuth } from "@/services/hooks/auth";
 
 const AddPermission: React.FC = () => {
+  const { token } = useAuth();
   const { data: responseData } = UseFetch<{ data: User[] }>("users");
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [permissionName, setPermissionName] = useState("");
+  const [permissionModule, setPermissionModule] = useState("");
 
   const users = responseData?.data || [];
 
@@ -32,15 +35,16 @@ const AddPermission: React.FC = () => {
     event.preventDefault();
     const payload = {
       name: permissionName,
-      users: selectedUsers,
+      module: permissionModule,
     };
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASEURL}/v1/permissions`,
+        `${process.env.NEXT_PUBLIC_BASEURL}/v1/admin/permissions`,
         {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
@@ -93,6 +97,17 @@ const AddPermission: React.FC = () => {
                   fullWidth
                   value={permissionName}
                   onChange={(e) => setPermissionName(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <TextField
+                  id="outlined-basic"
+                  label="Permission Module"
+                  name="module"
+                  fullWidth
+                  value={permissionModule}
+                  onChange={(e) => setPermissionModule(e.target.value)}
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
