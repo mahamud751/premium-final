@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Autocomplete, TextField, CircularProgress } from "@mui/material";
 import { User } from "@/services/types";
 import useFetch from "@/services/hooks/UseRequest";
 
 interface UserSelectProps {
   users: User[];
-  selectedUser: string;
+  selectedUser: string; // Should represent user.id, not user.name
   onUserChange: (event: React.SyntheticEvent, value: User | null) => void;
 }
 
@@ -30,7 +30,7 @@ const UserSelect: React.FC<UserSelectProps> = ({
 
   const users = userData?.data || initialUsers || [];
 
-  // Find the selected user object based on selectedUser ID
+  // Find the selected user object based on selectedUser (user.id)
   const selectedUserObj =
     users.find((user) => user.id === selectedUser) || null;
 

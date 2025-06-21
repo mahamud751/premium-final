@@ -159,6 +159,13 @@ const OrderForm: React.FC<OrderFormProps> = ({
                 selectedUser={selectedUser}
                 onUserChange={handleUserChange}
               />
+              {/* Add hidden input for user_id */}
+              <TextField
+                type="hidden"
+                name="user_id"
+                value={formData.user_id}
+                sx={{ display: "none" }}
+              />
             </Grid>
             <Grid item xs={12}>
               <ProjectSelect
